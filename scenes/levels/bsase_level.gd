@@ -1,0 +1,11 @@
+extends Node3D
+class_name BaseLevel
+
+const PLAYER_PREFAB:=preload("res://scenes/characters/player.tscn")
+
+@onready var player_spawn: Node3D = %PlayerSpawn
+
+func _ready() -> void:
+	var player:Player=PLAYER_PREFAB.instantiate()
+	player.global_transform=player_spawn.global_transform
+	add_child(player)

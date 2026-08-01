@@ -4,12 +4,12 @@ extends CharacterBody3D
 const MAX_ANGLE_LOOK_UP:=deg_to_rad(70)
 const MAX_ANGLE_LOOK_DOWN:=deg_to_rad(-70)
 
-@export var acceleration:float
-@export var jump_force:float
-@export var gravity:float
-@export var mouse_sensitivity:float
-@export var walk_speed:float
-@export var run_speed:float
+@export var acceleration:float = 30.0
+@export var jump_force:float = 12
+@export var gravity:float = 0.98
+@export var mouse_sensitivity:float = 0.002
+@export var walk_speed:float = 3.0
+@export var run_speed:float = 6.0
 @onready var camera: Camera3D = %Camera3D
 
 var input_dir:=Vector2.ZERO
@@ -33,10 +33,10 @@ func _physics_process(delta: float) -> void:
 	var desired_velocity:=transform.basis*input_3d_space*target_speed
 	if input_3d_space==Vector3.ZERO:
 		velocity.x=move_toward(velocity.x,0,acceleration*delta)
-		velocity.y=move_toward(velocity.y,0,acceleration*delta)
+		velocity.z=move_toward(velocity.z,0,acceleration*delta)
 	else:
 		velocity.x=move_toward(velocity.x,desired_velocity.x,acceleration*delta)
-		velocity.y=move_toward(velocity.y,desired_velocity.y,acceleration*delta)
+		velocity.z=move_toward(velocity.z,desired_velocity.z,acceleration*delta)
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
