@@ -1,6 +1,9 @@
 class_name Player
 extends CharacterBody3D
 
+@onready var camera: Camera3D = %Camera3D
+@onready var animation_player: AnimationPlayer = $character/AnimationPlayer
+
 const MAX_ANGLE_LOOK_UP:=deg_to_rad(70)
 const MAX_ANGLE_LOOK_DOWN:=deg_to_rad(-70)
 
@@ -10,7 +13,6 @@ const MAX_ANGLE_LOOK_DOWN:=deg_to_rad(-70)
 @export var mouse_sensitivity:float = 0.002
 @export var walk_speed:float = 3.0
 @export var run_speed:float = 6.0
-@onready var camera: Camera3D = %Camera3D
 
 var input_dir:=Vector2.ZERO
 var run:bool=false
@@ -37,6 +39,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x=move_toward(velocity.x,desired_velocity.x,acceleration*delta)
 		velocity.z=move_toward(velocity.z,desired_velocity.z,acceleration*delta)
+		
+	var horizontal_velocity=Vector3(velocity.x,0,velocity.y)
+	if horizontal_velocity.length_squared()>0.1 and is_on_floor():
+		animation_player.play("run")
+	else:
+		animation_player.play("idle")
+	
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
