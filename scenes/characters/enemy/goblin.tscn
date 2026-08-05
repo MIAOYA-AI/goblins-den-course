@@ -2,11 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://cp1b36er1hls1" path="res://assets/meshes/characters/character.glb" id="1_lwst2"]
 [ext_resource type="Texture2D" uid="uid://qkkpdtqr25qy" path="res://assets/textures/goblin.png" id="2_vcdsw"]
+[ext_resource type="PackedScene" uid="uid://cefve52iq66w1" path="res://assets/meshes/weapons/shortsword.glb" id="3_jswq3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h3w3k"]
 height = 1.7
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t61fv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffivp"]
 cull_mode = 1
 albedo_texture = ExtResource("2_vcdsw")
 texture_filter = 0
@@ -31,7 +32,17 @@ bones/13/rotation = Quaternion(0.05141636, -0.039886355, 0.9916478, 0.11135594)
 bones/14/rotation = Quaternion(0.1783776, -0.0027686893, 0.09066763, 0.97977203)
 
 [node name="Character" parent="character/骨架/Skeleton3D" index="0" unique_id=448358702]
-surface_material_override/0 = SubResource("StandardMaterial3D_t61fv")
+surface_material_override/0 = SubResource("StandardMaterial3D_ffivp")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="character/骨架/Skeleton3D" index="1" unique_id=854760901]
+transform = Transform3D(-0.822325, -0.53469783, 0.19462812, -0.5602043, 0.7007873, -0.4416657, 0.0997648, -0.47222424, -0.8758147, 0.48090866, 0.77454257, -0.35146135)
+bone_name = "Hand.R"
+bone_idx = 6
+
+[node name="WeaponSlot" type="Node3D" parent="character/骨架/Skeleton3D/BoneAttachment3D" unique_id=854333242]
+transform = Transform3D(-0.48943126, 0.8516673, 0.18740277, 0.02548284, 0.22877735, -0.9731452, -0.8716695, -0.47151214, -0.1336737, 0, 0, 0)
+
+[node name="shortsword" parent="character/骨架/Skeleton3D/BoneAttachment3D/WeaponSlot" unique_id=312209980 instance=ExtResource("3_jswq3")]
 
 [node name="AnimationPlayer" parent="character" index="1" unique_id=268727197]
 autoplay = &"idle"
