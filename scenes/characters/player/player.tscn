@@ -3,6 +3,14 @@
 [ext_resource type="Script" uid="uid://dgw7y3q3llg2l" path="res://scenes/characters/player/player.gd" id="1_rp718"]
 [ext_resource type="PackedScene" uid="uid://cp1b36er1hls1" path="res://assets/meshes/characters/character.glb" id="2_yewv4"]
 [ext_resource type="PackedScene" uid="uid://cefve52iq66w1" path="res://assets/meshes/weapons/shortsword.glb" id="3_686vu"]
+[ext_resource type="Texture2D" uid="uid://yauk3toqwb0m" path="res://assets/textures/dungeon-texture.png" id="4_hss88"]
+[ext_resource type="PackedScene" uid="uid://csxy423lhj3ti" path="res://assets/meshes/weapons/axe.glb" id="5_qd3e3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6m72w"]
+albedo_texture = ExtResource("4_hss88")
+texture_filter = 0
+use_z_clip_scale = true
+z_clip_scale = 0.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h3w3k"]
 margin = 0.3
@@ -30,10 +38,17 @@ bone_name = "Hand.R"
 bone_idx = 6
 
 [node name="WeaponSlot" type="Node3D" parent="character/骨架/Skeleton3D/BoneAttachment3D" unique_id=314829638]
-transform = Transform3D(-0.4894312, 0.85166717, 0.18740304, 0.025482876, 0.2287777, -0.9731452, -0.87166923, -0.47151214, -0.13367397, 0, 0, 0)
+transform = Transform3D(-0.8579978, 0.49223948, 0.14676493, 0.117755756, 0.4666148, -0.8765868, -0.49997333, -0.734827, -0.45831874, 0, 0, 0)
 
 [node name="shortsword" parent="character/骨架/Skeleton3D/BoneAttachment3D/WeaponSlot" unique_id=312209980 instance=ExtResource("3_686vu")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1.0000001, 0, 0, 0, 0.9999998, 0.018459952, 0.00043654442, -0.009771002)
+transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0, 0, 0)
+visible = false
+
+[node name="Sword" parent="character/骨架/Skeleton3D/BoneAttachment3D/WeaponSlot/shortsword" index="0" unique_id=1795377358]
+surface_material_override/0 = SubResource("StandardMaterial3D_6m72w")
+
+[node name="axe" parent="character/骨架/Skeleton3D/BoneAttachment3D/WeaponSlot" unique_id=372178931 instance=ExtResource("5_qd3e3")]
+transform = Transform3D(-0.87269306, 0.48826936, 2.9802322e-08, -0.4882693, -0.8726932, 2.9802322e-08, 2.9802322e-08, -1.6530976e-08, 1, 0.018459886, 0.00043654442, -0.009770989)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1119699540]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
@@ -46,3 +61,4 @@ current = true
 near = 0.001
 
 [editable path="character"]
+[editable path="character/骨架/Skeleton3D/BoneAttachment3D/WeaponSlot/shortsword"]
