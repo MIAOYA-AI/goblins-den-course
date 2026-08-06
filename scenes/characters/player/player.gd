@@ -3,6 +3,8 @@ extends CharacterBody3D
 
 @onready var camera: Camera3D = %Camera3D
 @onready var animation_player: AnimationPlayer = $character/AnimationPlayer
+@onready var select_ray_cast: RayCast3D = %SelectRayCast
+@onready var equipment_component: EquipmentComponent = %EquipmentComponent
 
 const MAX_ANGLE_LOOK_UP:=deg_to_rad(70)
 const MAX_ANGLE_LOOK_DOWN:=deg_to_rad(-70)
@@ -14,6 +16,7 @@ const MAX_ANGLE_LOOK_DOWN:=deg_to_rad(-70)
 @export var walk_speed:float = 3.0
 @export var run_speed:float = 6.0
 
+var current_focused_item:PickableItem=null
 var input_dir:=Vector2.ZERO
 var run:bool=false
 
@@ -23,6 +26,9 @@ func _ready() -> void:
 # 每个渲染帧执行一次 不会出现丢帧的问题
 func _process(_delta: float) -> void:
 	input_dir=Input.get_vector("strafe_left","strafe_right","backward","forward")
+	
+	if Input.is_action_just_pressed("use") and can_pickup_object():
+		pickup_object()
 	
 # 移动和碰撞检测必须要在物理帧中进行
 # 固定频率运动 与渲染帧无关 所以可能出现跳帧的问题
@@ -47,6 +53,8 @@ func _physics_process(delta: float) -> void:
 		animation_player.play("idle")
 	
 	move_and_slide()
+	
+	check_for_pickable_item()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -61,3 +69,26 @@ func check_jump_input() -> void:
 func process_gravity() -> void:
 	if !is_on_floor():
 		velocity.y-=gravity
+
+func check_for_pickable_item() -> void:
+	var target_node:Node=null
+	if select_ray_cast.is_colliding():
+		var collider:=select_ray_cast.get_collider()
+		if collider is PickableItem:
+			target_node=collider
+	
+	if target_node!=current_focused_item:
+		if current_focused_item:
+			current_focused_item.unhightlight()
+		current_focused_item=target_node
+		if current_focused_item is PickableItem:
+			current_focused_item.hightlight()
+
+func can_pickup_object() -> bool:
+	return current_focused_item!=null
+	
+func pickup_object()->void:
+	var pickable_object:=current_focused_item
+	if pickable_object.weapon_data!=null:
+		equipment_component.equip_weapon(pickable_object.weapon_data,pickable_object.global_transform)
+		pickable_object.queue_free()

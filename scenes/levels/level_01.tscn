@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://dp6k2gjick26w" path="res://scenes/levels/bsase_level.tscn" id="1_2djvx"]
 [ext_resource type="PackedScene" uid="uid://bin1bnskndpug" path="res://scenes/rooms/entrance.tscn" id="2_uvc87"]
 [ext_resource type="PackedScene" uid="uid://bskrm716eop4r" path="res://scenes/rooms/foyer.tscn" id="3_qdh5e"]
+[ext_resource type="PackedScene" uid="uid://cg5to3gopwqho" path="res://scenes/equipment/pickable_item.tscn" id="4_qdh5e"]
+[ext_resource type="Resource" uid="uid://b85xdn0cdw6p1" path="res://data/weapons/axe.tres" id="5_50wog"]
 
 [node name="Level-01" unique_id=362185131 instance=ExtResource("1_2djvx")]
 
@@ -16,6 +18,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.048612, 1.8660052)
 
 [node name="Floors" parent="Hallways" parent_id_path=PackedInt32Array(320610145) index="0" unique_id=1182310203]
+collision_mask = 0
 data = {
 "cells": PackedInt32Array(65535, 65531, 1, 0, 65531, 655361)
 }
+
+[node name="PickableItem" parent="." index="3" unique_id=687574420 instance=ExtResource("4_qdh5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4052057, 0.14545488, -2.518135)
+weapon_data = ExtResource("5_50wog")

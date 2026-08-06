@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cp1b36er1hls1" path="res://assets/meshes/characters/character.glb" id="1_lwst2"]
 [ext_resource type="Texture2D" uid="uid://qkkpdtqr25qy" path="res://assets/textures/goblin.png" id="2_vcdsw"]
-[ext_resource type="PackedScene" uid="uid://cefve52iq66w1" path="res://assets/meshes/weapons/shortsword.glb" id="3_jswq3"]
+[ext_resource type="PackedScene" uid="uid://dmfg86jn8qjol" path="res://scenes/characters/component/equipment_component.tscn" id="3_vradb"]
+[ext_resource type="Resource" uid="uid://b85xdn0cdw6p1" path="res://data/weapons/axe.tres" id="4_jwip8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h3w3k"]
 height = 1.7
@@ -13,6 +14,7 @@ albedo_texture = ExtResource("2_vcdsw")
 texture_filter = 0
 
 [node name="Goblin" type="CharacterBody3D" unique_id=856469443]
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=420866073]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
@@ -40,11 +42,13 @@ bone_name = "Hand.R"
 bone_idx = 6
 
 [node name="WeaponSlot" type="Node3D" parent="character/骨架/Skeleton3D/BoneAttachment3D" unique_id=854333242]
-transform = Transform3D(-0.48943126, 0.8516673, 0.18740277, 0.02548284, 0.22877735, -0.9731452, -0.8716695, -0.47151214, -0.1336737, 0, 0, 0)
-
-[node name="shortsword" parent="character/骨架/Skeleton3D/BoneAttachment3D/WeaponSlot" unique_id=312209980 instance=ExtResource("3_jswq3")]
+transform = Transform3D(0.85732377, -0.4932621, 0.14726985, -0.118177734, -0.46703386, -0.8763066, 0.5010289, 0.73387444, -0.45869184, 0, 0, 0)
 
 [node name="AnimationPlayer" parent="character" index="1" unique_id=268727197]
 autoplay = &"idle"
+
+[node name="EquipmentComponent" parent="." unique_id=2035309279 node_paths=PackedStringArray("weapon_placeholder") instance=ExtResource("3_vradb")]
+weapon_data = ExtResource("4_jwip8")
+weapon_placeholder = NodePath("../character/骨架/Skeleton3D/BoneAttachment3D/WeaponSlot")
 
 [editable path="character"]
