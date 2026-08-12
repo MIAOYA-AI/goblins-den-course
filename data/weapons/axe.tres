@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WaeponData" format=3 uid="uid://b85xdn0cdw6p1"]
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://b85xdn0cdw6p1"]
 
 [ext_resource type="Script" uid="uid://duyj4lg5yvlvc" path="res://data/weapon_data.gd" id="1_ccd1n"]
 [ext_resource type="PackedScene" uid="uid://csxy423lhj3ti" path="res://assets/meshes/weapons/axe.glb" id="2_ev13c"]
@@ -14,4 +14,6 @@ reach = 6.0
 throw_rotation_speed = 30.0
 throw_movement_speed = 30.0
 waepon_mesh = ExtResource("2_ev13c")
+implale_local_translations = Vector3(0, 0, 0.8)
+implate_local_rotation = 0.5
 metadata/_custom_type_script = "uid://duyj4lg5yvlvc"

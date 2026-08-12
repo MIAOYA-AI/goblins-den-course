@@ -16,19 +16,27 @@ const MAX_ANGLE_LOOK_DOWN:=deg_to_rad(-70)
 @export var walk_speed:float = 3.0
 @export var run_speed:float = 6.0
 
+enum State {MOVING,PICKING_UP,THROWING}
+var state:State
+
 var current_focused_item:PickableItem=null
 var input_dir:=Vector2.ZERO
 var run:bool=false
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	switch_state(State.MOVING)
+	
+func switch_state(new_state:State) -> void:
+	var state_node:=PlayerStateMoving.new(self)
+	add_child(state_node)
 	
 # 每个渲染帧执行一次 不会出现丢帧的问题
 func _process(_delta: float) -> void:
 	input_dir=Input.get_vector("strafe_left","strafe_right","backward","forward")
-	
-	if Input.is_action_just_pressed("use") and can_pickup_object():
-		pickup_object()
+		
+	if Input.is_action_just_pressed("throw") and equipment_component.has_weapon():
+		equipment_component.throw_object()
 	
 # 移动和碰撞检测必须要在物理帧中进行
 # 固定频率运动 与渲染帧无关 所以可能出现跳帧的问题
@@ -45,15 +53,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x=move_toward(velocity.x,desired_velocity.x,acceleration*delta)
 		velocity.z=move_toward(velocity.z,desired_velocity.z,acceleration*delta)
-		
-	var horizontal_velocity=Vector3(velocity.x,0,velocity.y)
-	if horizontal_velocity.length_squared()>0.1 and is_on_floor():
-		animation_player.play("run")
-	else:
-		animation_player.play("idle")
 	
 	move_and_slide()
-	
 	check_for_pickable_item()
 
 func _input(event: InputEvent) -> void:
@@ -86,9 +87,3 @@ func check_for_pickable_item() -> void:
 
 func can_pickup_object() -> bool:
 	return current_focused_item!=null
-	
-func pickup_object()->void:
-	var pickable_object:=current_focused_item
-	if pickable_object.weapon_data!=null:
-		equipment_component.equip_weapon(pickable_object.weapon_data,pickable_object.global_transform)
-		pickable_object.queue_free()

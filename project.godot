@@ -15,6 +15,10 @@ run/main_scene="uid://du4iytvqujxe7"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameState="*uid://cty2vqawfdqbw"
+
 [debug]
 
 gdscript/warnings/unused_signal=0
@@ -98,6 +102,7 @@ restart={
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Enemy"
 3d_physics/layer_4="PickableItem"
+3d_physics/layer_5="Projectiles"
 
 [physics]
 

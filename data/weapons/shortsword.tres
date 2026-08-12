@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WaeponData" format=3 uid="uid://bmre07o38bl3s"]
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bmre07o38bl3s"]
 
 [ext_resource type="Script" uid="uid://duyj4lg5yvlvc" path="res://data/weapon_data.gd" id="1_tc6ku"]
 [ext_resource type="PackedScene" uid="uid://cefve52iq66w1" path="res://assets/meshes/weapons/shortsword.glb" id="2_joehd"]
@@ -11,7 +11,8 @@ max_condition = 30
 damage_min = 3
 damage_max = 5
 reach = 5.0
-throw_rotation_speed = 10.0
-throw_movement_speed = 10.0
+throw_rotation_speed = 30.0
+throw_movement_speed = 50.0
 waepon_mesh = ExtResource("2_joehd")
+implale_local_translations = Vector3(0, 0, 0.6)
 metadata/_custom_type_script = "uid://duyj4lg5yvlvc"

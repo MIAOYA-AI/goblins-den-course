@@ -2,8 +2,10 @@ extends Node3D
 class_name EquipmentComponent
 
 const EQUIPED_ITEM_PREFAB:=preload("res://scenes/equipment/equiped_item.tscn")
+const THROW_ITEM_PREFAB:=preload("res://scenes/equipment/thrown_item.tscn")
 
 @export var close_weapon_deep:bool
+@export var weapon_spawn:Node3D
 @export var weapon_data:WeaponData
 @export var weapon_placeholder:Node3D
 
@@ -13,8 +15,8 @@ func _ready() -> void:
 		
 func equip_weapon(data:WeaponData,pickup_transform:Transform3D=Transform3D.IDENTITY)-> void:
 	# 先清空手上的装备
-	for child in weapon_placeholder.get_children():
-		weapon_placeholder.remove_child(child)
+	if has_weapon():
+		throw_object()
 	
 	# 引用同一个资源时属性是全局共享的 因此这里需要创建一个副本
 	weapon_data=data.duplicate()
@@ -25,6 +27,15 @@ func equip_weapon(data:WeaponData,pickup_transform:Transform3D=Transform3D.IDENT
 	if pickup_transform!=Transform3D.IDENTITY:
 		weapon.global_transform=pickup_transform
 		animate_to_hand(weapon)
+		
+func has_weapon() -> bool:
+	return weapon_data != null and weapon_placeholder.get_child_count()>0
+
+func get_equip() -> EquipedItem:
+	if has_weapon():
+		return weapon_placeholder.get_child(0) as EquipedItem
+	else:
+		return null
 
 func animate_to_hand(equiped_item:Node3D) -> void:
 	var tween:=equiped_item.create_tween()
@@ -32,3 +43,12 @@ func animate_to_hand(equiped_item:Node3D) -> void:
 	tween.set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(equiped_item,"position",Vector3.ZERO,0.4)
 	tween.parallel().tween_property(equiped_item,"rotation",Vector3.ZERO,0.2)
+	
+func throw_object()-> void:
+	if has_weapon():
+		var throw_item:ThrownItem= THROW_ITEM_PREFAB.instantiate() as ThrownItem
+		throw_item.weapon_data=weapon_data
+		throw_item.global_transform=weapon_spawn.global_transform
+		GameState.current_level.add_child(throw_item)
+		weapon_data=null
+		weapon_placeholder.get_child(0).queue_free()

@@ -1,0 +1,18 @@
+extends Node3D
+class_name World
+
+const LEVELS:=[preload("res://scenes/levels/level_01.tscn")]
+
+var current_level_index:=0
+var current_loaded_level:BaseLevel=null
+
+func _ready() -> void:
+	load_level(current_level_index)
+	
+func load_level(index:int) -> void:
+	if current_loaded_level!=null:
+		current_loaded_level.queue_free()
+	if LEVELS.size()>index:
+		current_loaded_level=LEVELS[index].instantiate()
+		GameState.register_level(current_loaded_level)
+		add_child(current_loaded_level)
