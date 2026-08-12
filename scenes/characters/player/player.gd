@@ -18,6 +18,7 @@ const MAX_ANGLE_LOOK_DOWN:=deg_to_rad(-70)
 
 enum State {MOVING,PICKING_UP,THROWING}
 var state:State
+var state_node:PlayerState
 
 var current_focused_item:PickableItem=null
 var input_dir:=Vector2.ZERO
@@ -28,22 +29,32 @@ func _ready() -> void:
 	switch_state(State.MOVING)
 	
 func switch_state(new_state:State) -> void:
-	var state_node:=PlayerStateMoving.new(self)
+	if state_node!=null:
+		state_node.queue_free()
+	var state_map:={
+		State.MOVING:PlayerStateMoving,
+		State.PICKING_UP:PlayerStatePickingUp,
+		State.THROWING:PlayerStateThrowing
+	}
+	state_node=state_map[new_state].new(self)
+	state_node.transition_requested.connect(switch_state)
+	state_node.name="State:"+State.keys()[new_state]
+	state=new_state
 	add_child(state_node)
 	
 # 每个渲染帧执行一次 不会出现丢帧的问题
 func _process(_delta: float) -> void:
 	input_dir=Input.get_vector("strafe_left","strafe_right","backward","forward")
-		
-	if Input.is_action_just_pressed("throw") and equipment_component.has_weapon():
-		equipment_component.throw_object()
 	
 # 移动和碰撞检测必须要在物理帧中进行
 # 固定频率运动 与渲染帧无关 所以可能出现跳帧的问题
 func _physics_process(delta: float) -> void:
 	check_jump_input()
 	process_gravity()
+	move_and_slide()
+	check_for_pickable_item()
 	
+func process_movement(delta:float) -> void:
 	var input_3d_space:=Vector3(input_dir.x,0,-input_dir.y)#角色面朝-z
 	var target_speed:=run_speed if Input.is_action_pressed("run") else walk_speed
 	var desired_velocity:=transform.basis*input_3d_space*target_speed
@@ -53,9 +64,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x=move_toward(velocity.x,desired_velocity.x,acceleration*delta)
 		velocity.z=move_toward(velocity.z,desired_velocity.z,acceleration*delta)
-	
-	move_and_slide()
-	check_for_pickable_item()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
