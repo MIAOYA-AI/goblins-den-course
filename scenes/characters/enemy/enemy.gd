@@ -1,18 +1,32 @@
 extends CharacterBody3D
 class_name Enemy
 
+const GRAVITY:=20
+
 @onready var physical_bone_torso: PhysicalBone3D = %"Physical Bone Torso"
 @onready var collision_shape: CollisionShape3D = %CollisionShape
 @onready var skeleton_simulator: PhysicalBoneSimulator3D = %PhysicalBoneSimulator3D
 @onready var animation_player: AnimationPlayer = $character/AnimationPlayer
 @onready var equipment_component: EquipmentComponent = %EquipmentComponent
+@onready var player_detection_area: Area3D = %PlayerDetectionArea
+@onready var weapon_reach_raycast: RayCast3D = %WeaponReachRaycast
+@onready var health_component: HealthComponent = %HealthComponent
 
-enum State {MOVING,IMPALE,DEATH}
+@export var player:Player
+@export var duration_between_attacks:int
+
+enum State {MOVING,IMPALE,DEATH,SLASHING,HURT}
 var state:State
 var state_node:EnemyState
+var time_since_last_attack:int
+var pushback_force:=Vector3.ZERO
 
 func _ready() -> void:
+	player_detection_area.body_entered.connect(on_player_detected)
 	switch_state(State.MOVING)
+	
+func _physics_process(delta: float) -> void:
+	process_movement(delta)
 
 func switch_state(new_state:State,data:EnemyStateData=EnemyStateData.new()) -> void:
 	if state_node!=null:
@@ -20,13 +34,28 @@ func switch_state(new_state:State,data:EnemyStateData=EnemyStateData.new()) -> v
 	var state_map:={
 		State.MOVING:EnemyStateMoving,
 		State.IMPALE:EnemyStateImpaled,
-		State.DEATH:EnemyStateDeath
+		State.DEATH:EnemyStateDeath,
+		State.SLASHING:EnemyStateSlashing,
+		State.HURT:EnemyStateHurt
 	}
 	state_node=state_map[new_state].new(self,data)
 	state_node.transition_requested.connect(switch_state)
 	state_node.name="State:"+State.keys()[new_state]
 	state=new_state
 	add_child(state_node)
+	
+func process_movement(delta:float) -> void:
+	process_gravity(delta)
+	process_pushback(delta)
+	move_and_slide()
+	
+func process_gravity(delta:float) -> void:
+	if not is_on_floor():
+		velocity.y-=GRAVITY*delta
+		
+func process_pushback(delta:float) -> void:
+	pushback_force=pushback_force.move_toward(Vector3.ZERO,delta*40)
+	velocity=pushback_force
 
 func impale(thrown_item:ThrownItem,item_basis:Basis) -> void:
 	var impale_data:EnemyStateData=EnemyStateData.new()
@@ -34,3 +63,21 @@ func impale(thrown_item:ThrownItem,item_basis:Basis) -> void:
 	impale_data.thrown_item_basis=item_basis
 	switch_state(State.IMPALE,impale_data)
 	thrown_item.queue_free()
+	
+func on_player_detected(body:Node3D) -> void:
+	player=body
+
+func has_registered_player() -> bool:
+	return player!=null and is_instance_valid(player)
+
+func is_player_within_reach() -> bool:
+	if has_registered_player() and equipment_component.has_weapon():
+		return weapon_reach_raycast.is_colliding()
+	else:
+		return false
+		
+func try_recrive_hit(damage:int,impact_dirction:Vector3) -> void:
+	var damage_data:EnemyStateData=EnemyStateData.new()
+	damage_data.damage=damage
+	damage_data.impulse_direction=impact_dirction
+	switch_state(Enemy.State.HURT,damage_data)

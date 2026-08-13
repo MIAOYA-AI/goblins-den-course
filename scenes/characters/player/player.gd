@@ -5,6 +5,8 @@ extends CharacterBody3D
 @onready var animation_player: AnimationPlayer = $character/AnimationPlayer
 @onready var select_ray_cast: RayCast3D = %SelectRayCast
 @onready var equipment_component: EquipmentComponent = %EquipmentComponent
+@onready var weapon_reach_raycast: RayCast3D = %WeaponReachRaycast
+@onready var health_component: HealthComponent = %HealthComponent
 
 const MAX_ANGLE_LOOK_UP:=deg_to_rad(70)
 const MAX_ANGLE_LOOK_DOWN:=deg_to_rad(-70)
@@ -16,7 +18,7 @@ const MAX_ANGLE_LOOK_DOWN:=deg_to_rad(-70)
 @export var walk_speed:float = 3.0
 @export var run_speed:float = 6.0
 
-enum State {MOVING,PICKING_UP,THROWING}
+enum State {MOVING,PICKING_UP,THROWING,ATTACKING}
 var state:State
 var state_node:PlayerState
 
@@ -34,7 +36,8 @@ func switch_state(new_state:State) -> void:
 	var state_map:={
 		State.MOVING:PlayerStateMoving,
 		State.PICKING_UP:PlayerStatePickingUp,
-		State.THROWING:PlayerStateThrowing
+		State.THROWING:PlayerStateThrowing,
+		State.ATTACKING:PlayerStateAttacking
 	}
 	state_node=state_map[new_state].new(self)
 	state_node.transition_requested.connect(switch_state)

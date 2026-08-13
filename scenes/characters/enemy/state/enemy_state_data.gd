@@ -6,4 +6,5 @@ const SIMULATION_TIME:=3.0
 
 var impaled_item_weapon_data:WeaponData
 var thrown_item_basis:Basis
-var death_impulse:Vector3=Vector3.ZERO
+var impulse_direction:Vector3=Vector3.ZERO
+var damage:int

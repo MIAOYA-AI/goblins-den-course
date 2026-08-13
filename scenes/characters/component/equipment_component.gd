@@ -8,6 +8,7 @@ const THROW_ITEM_PREFAB:=preload("res://scenes/equipment/thrown_item.tscn")
 @export var weapon_spawn:Node3D
 @export var weapon_data:WeaponData
 @export var weapon_placeholder:Node3D
+@export var weapon_reach_raycast:RayCast3D
 
 func _ready() -> void:
 	if weapon_data!=null:
@@ -24,6 +25,7 @@ func equip_weapon(data:WeaponData,pickup_transform:Transform3D=Transform3D.IDENT
 	weapon.weapon_data=data
 	weapon.close_deep=close_weapon_deep
 	weapon_placeholder.add_child(weapon)
+	weapon_reach_raycast.target_position.z=-sqrt(weapon_data.reach)
 	if pickup_transform!=Transform3D.IDENTITY:
 		weapon.global_transform=pickup_transform
 		animate_to_hand(weapon)

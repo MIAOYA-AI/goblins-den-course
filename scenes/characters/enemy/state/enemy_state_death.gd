@@ -2,10 +2,12 @@ extends EnemyState
 class_name EnemyStateDeath
 
 func _enter_tree() -> void:
+	#丢下手里武器
+	enemy.equipment_component.throw_object(true)
 	enemy.collision_shape.disabled=true
 	enemy.skeleton_simulator.active=true
 	enemy.skeleton_simulator.physical_bones_start_simulation()
-	enemy.physical_bone_torso.apply_impulse(state_data.death_impulse)
+	enemy.physical_bone_torso.apply_impulse(state_data.impulse_direction)
 	var timer :=get_tree().create_timer(state_data.SIMULATION_TIME)
 	timer.timeout.connect(freeze_ragdoll)
 
