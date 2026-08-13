@@ -5,8 +5,8 @@ func _enter_tree() -> void:
 	enemy.collision_shape.disabled=true
 	enemy.skeleton_simulator.active=true
 	enemy.skeleton_simulator.physical_bones_start_simulation()
-	enemy.physical_bone_torso.apply_impulse(enemy.death_impulse)
-	var timer :=get_tree().create_timer(enemy.SIMULATION_TIME)
+	enemy.physical_bone_torso.apply_impulse(state_data.death_impulse)
+	var timer :=get_tree().create_timer(state_data.SIMULATION_TIME)
 	timer.timeout.connect(freeze_ragdoll)
 
 func freeze_ragdoll() -> void:

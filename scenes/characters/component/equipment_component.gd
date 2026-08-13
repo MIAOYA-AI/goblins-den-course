@@ -16,7 +16,7 @@ func _ready() -> void:
 func equip_weapon(data:WeaponData,pickup_transform:Transform3D=Transform3D.IDENTITY)-> void:
 	# 先清空手上的装备
 	if has_weapon():
-		throw_object()
+		throw_object(true)
 	
 	# 引用同一个资源时属性是全局共享的 因此这里需要创建一个副本
 	weapon_data=data.duplicate()
@@ -44,11 +44,15 @@ func animate_to_hand(equiped_item:Node3D) -> void:
 	tween.parallel().tween_property(equiped_item,"position",Vector3.ZERO,0.4)
 	tween.parallel().tween_property(equiped_item,"rotation",Vector3.ZERO,0.2)
 	
-func throw_object()-> void:
+func throw_object(is_drop:bool=false)-> void:
 	if has_weapon():
 		var throw_item:ThrownItem= THROW_ITEM_PREFAB.instantiate() as ThrownItem
+		throw_item.is_being_dropped=is_drop
 		throw_item.weapon_data=weapon_data
-		throw_item.global_transform=weapon_spawn.global_transform
+		if weapon_spawn!=null:
+			throw_item.global_transform=weapon_spawn.global_transform
+		else:
+			throw_item.global_transform=get_equip().global_transform
 		GameState.current_level.add_child(throw_item)
 		weapon_data=null
 		weapon_placeholder.get_child(0).queue_free()

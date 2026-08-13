@@ -10,7 +10,6 @@ var hightlight_material:StandardMaterial3D
 var mesh_node:MeshInstance3D
 
 func _ready() -> void:
-	
 	var pickable_object:Node3D=null
 	hightlight_material=HIGHTLIGHT_MATERIAL.duplicate()
 	if weapon_data:

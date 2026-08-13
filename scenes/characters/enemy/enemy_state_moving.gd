@@ -1,2 +1,0 @@
-extends EnemyState
-class_name EnemyStateMoving
