@@ -57,6 +57,7 @@ radius = 2.5
 collision_layer = 4
 script = ExtResource("1_jwip8")
 duration_between_attacks = 2000
+run_speed = 2.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=420866073]
 unique_name_in_owner = true
@@ -308,7 +309,7 @@ collision_mask = 2
 
 [node name="HealthComponent" parent="." unique_id=81062275 instance=ExtResource("6_57gyo")]
 unique_name_in_owner = true
-max_health = 10
-cur_health = 10
+max_health = 100
+cur_health = 100
 
 [editable path="character"]

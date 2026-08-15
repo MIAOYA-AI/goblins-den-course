@@ -33,3 +33,6 @@ transform = Transform3D(-0.83343107, 0, 0.55262345, 0, 1, 0, -0.55262345, 0, -0.
 
 [node name="Goblin2" parent="." index="5" unique_id=1689282500 instance=ExtResource("6_50wog")]
 transform = Transform3D(-0.61840427, 0, -0.7858601, 0, 1, 0, 0.7858601, 0, -0.61840427, -3.0184288, 0, -10.629055)
+
+[node name="Goblin3" parent="." index="6" unique_id=1012796728 instance=ExtResource("6_50wog")]
+transform = Transform3D(-0.9974877, 0, 0.070839375, 0, 1, 0, -0.070839375, 0, -0.9974877, -0.5343585, 0, -18.465466)

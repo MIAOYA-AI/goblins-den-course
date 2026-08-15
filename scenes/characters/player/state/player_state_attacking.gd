@@ -12,8 +12,8 @@ func _enter_tree() -> void:
 	transition_state(Player.State.MOVING)
 
 func emit_damage() -> void:
-	var damage:=player.equipment_component.weapon_data.get_damage_dealt()
-	var enemy:=player.weapon_reach_raycast.get_collider() as Enemy
-	if enemy!=null:
-		var impact_direction=(enemy.global_position-player.global_position).normalized()
-		(player.weapon_reach_raycast.get_collider() as Enemy).try_recrive_hit(damage,impact_direction)
+	if player.equipment_component.has_weapon():
+		var damage:=player.equipment_component.weapon_data.get_damage_dealt()
+		var enemy:=player.weapon_reach_raycast.get_collider() as Enemy
+		if enemy!=null:
+			(player.weapon_reach_raycast.get_collider() as Enemy).try_recrive_hit(damage,player)

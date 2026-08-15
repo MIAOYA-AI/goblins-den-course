@@ -14,6 +14,7 @@ const GRAVITY:=20
 
 @export var player:Player
 @export var duration_between_attacks:int
+@export var run_speed:float
 
 enum State {MOVING,IMPALE,DEATH,SLASHING,HURT}
 var state:State
@@ -76,8 +77,10 @@ func is_player_within_reach() -> bool:
 	else:
 		return false
 		
-func try_recrive_hit(damage:int,impact_dirction:Vector3) -> void:
+func try_recrive_hit(damage:int,source_player:Player) -> void:
+	player=source_player
+	var impact_direction:Vector3=(global_position-source_player.global_position).normalized()
 	var damage_data:EnemyStateData=EnemyStateData.new()
 	damage_data.damage=damage
-	damage_data.impulse_direction=impact_dirction
+	damage_data.impulse_direction=impact_direction
 	switch_state(Enemy.State.HURT,damage_data)

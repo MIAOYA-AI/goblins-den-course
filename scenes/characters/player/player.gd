@@ -51,7 +51,7 @@ func _process(_delta: float) -> void:
 	
 # 移动和碰撞检测必须要在物理帧中进行
 # 固定频率运动 与渲染帧无关 所以可能出现跳帧的问题
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	check_jump_input()
 	process_gravity()
 	move_and_slide()
