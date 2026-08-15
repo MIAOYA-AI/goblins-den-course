@@ -16,13 +16,13 @@ script = ExtResource("1_rp718")
 
 [node name="character" parent="." unique_id=2047070673 instance=ExtResource("2_yewv4")]
 
-[node name="Skeleton3D" parent="character/骨架" parent_id_path=PackedInt32Array(2047070673, 2096693372) index="0" unique_id=142891923]
+[node name="Skeleton3D" parent="character/骨架" parent_id_path=PackedInt32Array(2047070673, 1144484165) index="0" unique_id=1958079816]
 bones/0/position = Vector3(0.00019862864, 0.6374467, -0.056220554)
-bones/2/rotation = Quaternion(-0.34757018, -0.023667742, -0.06027431, 0.93541527)
+bones/2/rotation = Quaternion(-0.1939587, 1.16945465e-07, -2.3121682e-08, 0.9810097)
 bones/4/rotation = Quaternion(0.13426237, -0.13597398, 0.9171164, -0.3498318)
-bones/5/rotation = Quaternion(-0.44644755, 0.41350663, -0.18927886, 0.7706299)
+bones/5/rotation = Quaternion(-0.40449694, 0.046905637, -0.06559011, 0.91097754)
 bones/5/scale = Vector3(1.0000001, 1, 1)
-bones/6/rotation = Quaternion(-0.6329034, -1.0924621e-07, -4.391675e-07, 0.7742308)
+bones/6/rotation = Quaternion(-0.6329034, -1.0550932e-07, -4.4342522e-07, 0.7742309)
 bones/7/rotation = Quaternion(-0.0509947, -0.046676356, 0.99090207, -0.115472615)
 bones/8/rotation = Quaternion(0.19282278, 0.0027590373, -0.098009974, 0.97632265)
 bones/10/rotation = Quaternion(-0.31227535, -0.35732353, 0.75903237, 0.44572848)
@@ -31,7 +31,7 @@ bones/13/rotation = Quaternion(0.050994672, -0.046676353, 0.99090207, 0.11547261
 bones/14/rotation = Quaternion(0.19282275, -0.002758935, 0.09800995, 0.97632265)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="character/骨架/Skeleton3D" index="0" unique_id=847768768]
-transform = Transform3D(-0.98157185, 0.18375953, 0.05243648, 0.1642416, 0.9515226, -0.26005757, -0.09768253, -0.2466528, -0.9641685, 0.48191935, 0.83749044, -0.36342353)
+transform = Transform3D(-0.81617254, -0.54161286, 0.20129159, -0.5693134, 0.69427806, -0.440296, 0.09871764, -0.47395527, -0.87499785, 0.4823864, 0.772192, -0.35133064)
 bone_name = "Hand.R"
 bone_idx = 6
 
@@ -40,7 +40,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.8573237, -0.49326202, 0.14726989, -0.1181777, -0.46703383, -0.8763069, 0.50102884, 0.73387444, -0.45869198, 0, 0, 0)
 
 [node name="HeadCamera" type="BoneAttachment3D" parent="character/骨架/Skeleton3D" index="1" unique_id=154533938]
-transform = Transform3D(0.9916137, 0.12921543, -0.0023792314, -0.10686864, 0.83019614, 0.547132, 0.072673135, -0.5422894, 0.8370431, 0.00019862864, 1.2205093, 0.021629922)
+transform = Transform3D(1, 1.0658141e-14, 2.384186e-07, -6.0752754e-08, 0.9669897, 0.25481555, -2.305483e-07, -0.25481552, 0.9669898, 0.00019862864, 1.2205093, 0.021629922)
 bone_name = "Head"
 bone_idx = 2
 

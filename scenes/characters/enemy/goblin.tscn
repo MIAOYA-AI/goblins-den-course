@@ -66,7 +66,7 @@ shape = SubResource("CapsuleShape3D_h3w3k")
 
 [node name="character" parent="." unique_id=769153409 instance=ExtResource("1_lwst2")]
 
-[node name="Skeleton3D" parent="character/骨架" parent_id_path=PackedInt32Array(769153409, 2096693372) index="0" unique_id=142891923]
+[node name="Skeleton3D" parent="character/骨架" parent_id_path=PackedInt32Array(769153409, 1144484165) index="0" unique_id=1958079816]
 bones/0/position = Vector3(0.00019862864, 0.6374467, -0.056220554)
 bones/2/rotation = Quaternion(-0.1939587, 1.16945465e-07, -2.3121682e-08, 0.9810097)
 bones/4/rotation = Quaternion(0.13426237, -0.13597398, 0.9171164, -0.3498318)
@@ -130,11 +130,11 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_xye4j")
 
 [node name="Physical Bone UpperArm_R" type="PhysicalBone3D" parent="character/骨架/Skeleton3D/PhysicalBoneSimulator3D" unique_id=596387294]
-transform = Transform3D(-0.8108538, 0.5725735, -0.121144146, -0.52903336, -0.62857205, 0.5701061, 0.25027978, 0.52636194, 0.81259036, 0.32275242, 0.9501376, -0.07135058)
+transform = Transform3D(-0.8108537, 0.5725735, -0.121144146, -0.52903336, -0.62857205, 0.570106, 0.25027975, 0.52636194, 0.8125904, 0.32275242, 0.9501376, -0.07135058)
 collision_layer = 0
 joint_type = 3
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.831461e-06, 1.7732382e-06, 0.123000085)
-body_offset = Transform3D(0.964389, 0.054933127, -0.25872016, -0.24706417, 0.5362718, -0.807076, 0.09440914, 0.8422558, 0.5307468, 0.031818807, 0.0992704, -0.06528376)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.830064e-06, 1.7769635e-06, 0.1230001)
+body_offset = Transform3D(0.9643891, 0.054933127, -0.2587201, -0.2470642, 0.5362718, -0.80707586, 0.09440909, 0.8422558, 0.5307468, 0.031818807, 0.0992704, -0.06528376)
 mass = 2.0
 bone_name = "UpperArm.R"
 joint_constraints/angular_limit_enabled = true
@@ -281,10 +281,10 @@ joint_constraints/angular_limit_relaxation = 1.0
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_5lcxi")
 
-[node name="Character" parent="character/骨架/Skeleton3D" index="2" unique_id=1691582209]
+[node name="Character" parent="character/骨架/Skeleton3D" index="2" unique_id=1872964749]
 surface_material_override/0 = ExtResource("3_jwip8")
 
-[node name="AnimationPlayer" parent="character" index="1" unique_id=132709485]
+[node name="AnimationPlayer" parent="character" index="1" unique_id=807712042]
 autoplay = &"idle"
 
 [node name="EquipmentComponent" parent="." unique_id=2035309279 node_paths=PackedStringArray("weapon_placeholder", "weapon_reach_raycast") instance=ExtResource("3_vradb")]

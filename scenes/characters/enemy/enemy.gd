@@ -55,8 +55,9 @@ func process_gravity(delta:float) -> void:
 		velocity.y-=GRAVITY*delta
 		
 func process_pushback(delta:float) -> void:
-	pushback_force=pushback_force.move_toward(Vector3.ZERO,delta*40)
-	velocity=pushback_force
+	if pushback_force!=Vector3.ZERO:
+		pushback_force=pushback_force.move_toward(Vector3.ZERO,delta*40)
+		velocity=pushback_force
 
 func impale(thrown_item:ThrownItem,item_basis:Basis) -> void:
 	var impale_data:EnemyStateData=EnemyStateData.new()
