@@ -20,9 +20,12 @@ func _physics_process(delta: float) -> void:
 				transition_state(enemy.State.SLASHING)
 		else:
 			enemy.animation_player.play("run")
-			var target_velocity:=-enemy.global_basis.z*enemy.run_speed
-			target_velocity.y=enemy.velocity.y
-			enemy.velocity=target_velocity
+			enemy.navigation_agent.target_position=target_position
+			var next_path_position:=enemy.navigation_agent.get_next_path_position()
+			var dirction:=enemy.global_position.direction_to(next_path_position)
+			var velocity:=dirction * enemy.run_speed
+			velocity.y=enemy.velocity.y
+			enemy.velocity = velocity
 		
 func can_attack() -> bool:
 	return Time.get_ticks_msec()-enemy.time_since_last_attack>enemy.duration_between_attacks

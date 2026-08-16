@@ -3,17 +3,20 @@
 [ext_resource type="PackedScene" uid="uid://dp6k2gjick26w" path="res://scenes/levels/bsase_level.tscn" id="1_2djvx"]
 [ext_resource type="PackedScene" uid="uid://bin1bnskndpug" path="res://scenes/rooms/entrance.tscn" id="2_uvc87"]
 [ext_resource type="PackedScene" uid="uid://bskrm716eop4r" path="res://scenes/rooms/foyer.tscn" id="3_qdh5e"]
+[ext_resource type="PackedScene" uid="uid://cbkhj7qiy0wml" path="res://scenes/rooms/kitchen.tscn" id="4_50wog"]
 [ext_resource type="PackedScene" uid="uid://cg5to3gopwqho" path="res://scenes/equipment/pickable_item.tscn" id="4_qdh5e"]
 [ext_resource type="Resource" uid="uid://b85xdn0cdw6p1" path="res://data/weapons/axe.tres" id="5_50wog"]
-[ext_resource type="PackedScene" uid="uid://bpc7hruxg3yjf" path="res://scenes/characters/enemy/goblin.tscn" id="6_50wog"]
 
 [node name="Level-01" unique_id=362185131 instance=ExtResource("1_2djvx")]
 
 [node name="Entrance" parent="Rooms" parent_id_path=PackedInt32Array(1847448231) index="0" unique_id=65457442 instance=ExtResource("2_uvc87")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 1)
 
 [node name="Foyer" parent="Rooms" parent_id_path=PackedInt32Array(1847448231) index="1" unique_id=812398419 instance=ExtResource("3_qdh5e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 12, 0, 5)
+
+[node name="Kitchen" parent="Rooms" parent_id_path=PackedInt32Array(1847448231) index="2" unique_id=240534943 instance=ExtResource("4_50wog")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0, -12)
 
 [node name="PlayerSpawn" parent="." index="1" unique_id=768595151]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.048612, 1.8660052)
@@ -21,18 +24,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.048612, 1.8660052)
 [node name="Floors" parent="Hallways" parent_id_path=PackedInt32Array(320610145) index="0" unique_id=1182310203]
 collision_mask = 0
 data = {
-"cells": PackedInt32Array(65535, 65531, 1, 0, 65531, 655361)
+"cells": PackedInt32Array(12, 65532, 655361, 11, 65532, 1, 0, 65532, 655361, 65535, 65532, 1)
 }
 
 [node name="PickableItem" parent="." index="3" unique_id=687574420 instance=ExtResource("4_qdh5e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4052057, 0.14545488, -2.518135)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9704723, 0.14545488, -7.772972)
 weapon_data = ExtResource("5_50wog")
-
-[node name="Goblin" parent="." index="4" unique_id=856469443 instance=ExtResource("6_50wog")]
-transform = Transform3D(-0.83343107, 0, 0.55262345, 0, 1, 0, -0.55262345, 0, -0.83343107, 2.3754964, 0, -8.811714)
-
-[node name="Goblin2" parent="." index="5" unique_id=1689282500 instance=ExtResource("6_50wog")]
-transform = Transform3D(-0.61840427, 0, -0.7858601, 0, 1, 0, 0.7858601, 0, -0.61840427, -3.0184288, 0, -10.629055)
-
-[node name="Goblin3" parent="." index="6" unique_id=1012796728 instance=ExtResource("6_50wog")]
-transform = Transform3D(-0.9974877, 0, 0.070839375, 0, 1, 0, -0.070839375, 0, -0.9974877, -0.5343585, 0, -18.465466)

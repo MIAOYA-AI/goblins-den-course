@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Enemy
 
+signal screamed
+
 const GRAVITY:=20
 
 @onready var physical_bone_torso: PhysicalBone3D = %"Physical Bone Torso"
@@ -11,6 +13,7 @@ const GRAVITY:=20
 @onready var player_detection_area: Area3D = %PlayerDetectionArea
 @onready var weapon_reach_raycast: RayCast3D = %WeaponReachRaycast
 @onready var health_component: HealthComponent = %HealthComponent
+@onready var navigation_agent: NavigationAgent3D = %NavigationAgent3D
 
 @export var player:Player
 @export var duration_between_attacks:int
@@ -27,6 +30,11 @@ func _ready() -> void:
 	switch_state(State.MOVING)
 	
 func _physics_process(delta: float) -> void:
+	#死亡后由布娃娃物理接管，清空残余速度并停止角色本体移动
+	if state == State.DEATH:
+		velocity = Vector3.ZERO
+		set_physics_process(false)
+		return
 	process_movement(delta)
 
 func switch_state(new_state:State,data:EnemyStateData=EnemyStateData.new()) -> void:
@@ -79,6 +87,7 @@ func is_player_within_reach() -> bool:
 		return false
 		
 func try_recrive_hit(damage:int,source_player:Player) -> void:
+	screamed.emit()
 	player=source_player
 	var impact_direction:Vector3=(global_position-source_player.global_position).normalized()
 	var damage_data:EnemyStateData=EnemyStateData.new()

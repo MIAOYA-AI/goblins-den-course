@@ -2,13 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://dvre4shd8agg2" path="res://scenes/rooms/base_room.tscn" id="1_he615"]
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_57gyo"]
+vertices = PackedVector3Array(-3.25, 0.5, -1.25, -3.25, 0.5, 1.25, 3.5, 0.5, 1.25, 3.5, 0.5, -1.25)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
 [node name="Entrance" unique_id=65457442 instance=ExtResource("1_he615")]
 
-[node name="Floors" parent="." index="0" unique_id=1309390559]
+[node name="RoomNavigation" parent="." index="1" unique_id=235192493]
+navigation_mesh = SubResource("NavigationMesh_57gyo")
+
+[node name="Floors" parent="RoomNavigation" index="0" unique_id=1309390559]
 data = {
 "cells": PackedInt32Array(65535, 65535, 0, 0, 65535, 0, 1, 65535, 0, 65534, 65535, 0, 65534, 65534, 1441793, 65535, 65534, 1441793, 0, 65534, 1441793, 1, 65534, 1441793, 65533, 65535, 1441792, 2, 65535, 1441792, 2, 65534, 1441793, 65533, 65534, 1441793, 65532, 65535, 1, 65532, 65534, 1441794, 3, 65534, 655362, 3, 65535, 655363, 65535, 0, 1441792, 0, 0, 1441792, 1, 0, 1441792, 2, 0, 655360, 65534, 0, 655360, 65533, 0, 655360, 65532, 0, 1, 65532, 1, 2, 65533, 1, 1048577, 65534, 1, 1048577, 65535, 1, 1048577, 0, 1, 1048577, 1, 1, 1048577, 2, 1, 1048577, 3, 0, 1048579, 3, 1, 1048578)
 }
-
-[node name="Ceilings" parent="." index="1" unique_id=121346521]
-cell_size = Vector3(1, 1, 1)
-cell_center_y = false

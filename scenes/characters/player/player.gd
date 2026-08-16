@@ -27,6 +27,7 @@ var input_dir:=Vector2.ZERO
 var run:bool=false
 
 func _ready() -> void:
+	GameState.register_player(self)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	switch_state(State.MOVING)
 	
