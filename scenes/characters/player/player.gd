@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody3D
 
-@onready var camera: Camera3D = %Camera3D
+@onready var camera: Camera3D = %Camera
 @onready var animation_player: AnimationPlayer = $character/AnimationPlayer
 @onready var select_ray_cast: RayCast3D = %SelectRayCast
 @onready var equipment_component: EquipmentComponent = %EquipmentComponent

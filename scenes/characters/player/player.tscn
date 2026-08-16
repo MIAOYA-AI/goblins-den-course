@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgw7y3q3llg2l" path="res://scenes/characters/player/player.gd" id="1_rp718"]
 [ext_resource type="PackedScene" uid="uid://cp1b36er1hls1" path="res://assets/meshes/characters/character.glb" id="2_yewv4"]
+[ext_resource type="Script" uid="uid://bl86faxuaqw67" path="res://scenes/characters/player/camera.gd" id="3_6avc5"]
 [ext_resource type="PackedScene" uid="uid://dmfg86jn8qjol" path="res://scenes/characters/component/equipment_component.tscn" id="4_qd3e3"]
 [ext_resource type="Resource" uid="uid://bmre07o38bl3s" path="res://data/weapons/shortsword.tres" id="5_6avc5"]
 [ext_resource type="PackedScene" uid="uid://d2mdkf8ja46kr" path="res://scenes/characters/component/health_component.tscn" id="5_qd3e3"]
@@ -12,6 +13,7 @@ height = 1.7
 
 [node name="Player" type="CharacterBody3D" unique_id=310797534]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_rp718")
 
 [node name="character" parent="." unique_id=2047070673 instance=ExtResource("2_yewv4")]
@@ -45,13 +47,14 @@ transform = Transform3D(1, 1.0658141e-14, 2.384186e-07, -6.0752754e-08, 0.966989
 bone_name = "Head"
 bone_idx = 2
 
-[node name="Camera3D" type="Camera3D" parent="character/骨架/Skeleton3D/HeadCamera" unique_id=292752730]
+[node name="Camera" type="Camera3D" parent="character/骨架/Skeleton3D/HeadCamera" unique_id=292752730]
 unique_name_in_owner = true
 transform = Transform3D(0.9997891, -0.016735649, -0.01189893, 0.013487679, 0.9721391, -0.23401621, 0.0154838255, 0.23380637, 0.9721597, -0.017837245, 0.3952974, -0.45238853)
 current = true
 near = 0.001
+script = ExtResource("3_6avc5")
 
-[node name="SelectRayCast" type="RayCast3D" parent="character/骨架/Skeleton3D/HeadCamera/Camera3D" unique_id=1166788036]
+[node name="SelectRayCast" type="RayCast3D" parent="character/骨架/Skeleton3D/HeadCamera/Camera" unique_id=1166788036]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -3)
 collision_mask = 8

@@ -1,0 +1,26 @@
+extends Node
+
+var current_intensity:GameEvents.ImpactIntensity
+var duretion_map:Dictionary[GameEvents.ImpactIntensity,float]={
+	GameEvents.ImpactIntensity.LOW:70,
+	GameEvents.ImpactIntensity.MEDIUM:100,
+	GameEvents.ImpactIntensity.HIGH:130
+}
+var is_pause:bool=false
+var time_since_start_pause:=Time.get_ticks_msec()
+
+func _ready() -> void:
+	process_mode=Node.PROCESS_MODE_ALWAYS
+	GameEvents.impact_felt.connect(on_impact_felt)
+	
+func on_impact_felt(intensity:GameEvents.ImpactIntensity) -> void:
+	get_tree().paused=true
+	time_since_start_pause=Time.get_ticks_msec()
+	is_pause=true
+	current_intensity=intensity
+
+func _process(_delta: float) -> void:
+	var duration_since_paused:=Time.get_ticks_msec()-time_since_start_pause
+	if is_pause and duration_since_paused>duretion_map[current_intensity]:
+		is_pause=false
+		get_tree().paused=false
