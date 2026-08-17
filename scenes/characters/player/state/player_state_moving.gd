@@ -8,6 +8,8 @@ func _process(_delta: float) -> void:
 		transition_state(Player.State.THROWING)
 	if Input.is_action_just_pressed("action"):
 		transition_state(Player.State.ATTACKING)
+	if Input.is_action_just_pressed("kick"):
+		transition_state(Player.State.KICKING)
 
 func _physics_process(delta: float) -> void:
 	player.process_movement(delta)

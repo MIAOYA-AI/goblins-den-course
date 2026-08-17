@@ -9,47 +9,48 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h3w3k"]
 margin = 0.3
+radius = 0.6
 height = 1.7
 
 [node name="Player" type="CharacterBody3D" unique_id=310797534]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 37
 script = ExtResource("1_rp718")
 
 [node name="character" parent="." unique_id=2047070673 instance=ExtResource("2_yewv4")]
 
-[node name="Skeleton3D" parent="character/骨架" parent_id_path=PackedInt32Array(2047070673, 1912475235) index="0" unique_id=1915089691]
+[node name="Skeleton3D" parent="character/骨架" parent_id_path=PackedInt32Array(2047070673, 1655285631) index="0" unique_id=886099313]
 bones/0/position = Vector3(0.00019862864, 0.6374467, -0.056220554)
-bones/0/rotation = Quaternion(0.06631871, 0, 0, 0.99779856)
-bones/2/rotation = Quaternion(-0.1939587, 1.16945465e-07, -2.3121682e-08, 0.9810097)
-bones/4/rotation = Quaternion(0.13426237, -0.13597398, 0.9171164, -0.3498318)
-bones/5/rotation = Quaternion(-0.40449694, 0.046905637, -0.06559011, 0.91097754)
+bones/2/rotation = Quaternion(-0.34757018, -0.023667742, -0.06027431, 0.93541527)
+bones/4/rotation = Quaternion(0.13426237, -0.13597396, 0.91711646, -0.34983176)
+bones/5/rotation = Quaternion(-0.44644755, 0.41350663, -0.18927886, 0.7706299)
 bones/5/scale = Vector3(1.0000001, 1, 1)
-bones/6/rotation = Quaternion(-0.6329034, -1.0550932e-07, -4.4342522e-07, 0.7742309)
+bones/6/rotation = Quaternion(-0.6329034, -1.09246216e-07, -4.391676e-07, 0.7742309)
 bones/7/rotation = Quaternion(-0.0509947, -0.046676356, 0.99090207, -0.115472615)
-bones/8/rotation = Quaternion(0.19282277, 0.0027590368, -0.098009974, 0.97632265)
-bones/10/rotation = Quaternion(-0.31227532, -0.35732353, 0.7590324, 0.4457285)
-bones/11/rotation = Quaternion(-0.15728489, 0.004466136, -0.041925054, 0.98665285)
+bones/8/rotation = Quaternion(0.19282278, 0.0027590373, -0.098009974, 0.97632265)
+bones/8/scale = Vector3(0.9999998, 0.9999999, 1.0000002)
+bones/10/rotation = Quaternion(-0.31227535, -0.35732353, 0.75903237, 0.44572848)
+bones/11/rotation = Quaternion(-0.34142908, 0.02555764, -0.043396898, 0.93855727)
 bones/13/rotation = Quaternion(0.050994672, -0.046676353, 0.99090207, 0.115472615)
 bones/14/rotation = Quaternion(0.19282275, -0.002758935, 0.09800995, 0.97632265)
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="character/骨架/Skeleton3D" index="0" unique_id=847768768]
-transform = Transform3D(-0.81617254, -0.54161286, 0.20129159, -0.56931335, 0.694278, -0.440296, 0.09871764, -0.47395527, -0.8749978, 0.4823864, 0.772192, -0.35133058)
+[node name="WeaponBoneAttachment" type="BoneAttachment3D" parent="character/骨架/Skeleton3D" index="0" unique_id=847768768]
+transform = Transform3D(-0.98157173, 0.18375956, 0.052436363, 0.16424158, 0.9515223, -0.2600577, -0.09768256, -0.24665302, -0.9641682, 0.48191932, 0.8374905, -0.3634235)
 bone_name = "Hand.R"
 bone_idx = 6
 
-[node name="WeaponSlot" type="Node3D" parent="character/骨架/Skeleton3D/BoneAttachment3D" unique_id=314829638]
+[node name="WeaponSlot" type="Node3D" parent="character/骨架/Skeleton3D/WeaponBoneAttachment" unique_id=314829638]
 unique_name_in_owner = true
 transform = Transform3D(0.8573237, -0.49326202, 0.14726989, -0.1181777, -0.46703383, -0.8763069, 0.50102884, 0.73387444, -0.45869198, 0, 0, 0)
 
 [node name="HeadCamera" type="BoneAttachment3D" parent="character/骨架/Skeleton3D" index="1" unique_id=154533938]
-transform = Transform3D(1, 1.0658141e-14, 2.384186e-07, -6.0752754e-08, 0.9669897, 0.25481558, -2.305483e-07, -0.25481552, 0.9669898, 0.00019862864, 1.2205093, 0.021629907)
+transform = Transform3D(0.9916137, 0.12921543, -0.0023792314, -0.10686864, 0.83019614, 0.547132, 0.072673135, -0.5422894, 0.8370431, 0.00019862864, 1.2205093, 0.021629922)
 bone_name = "Head"
 bone_idx = 2
 
 [node name="Camera" type="Camera3D" parent="character/骨架/Skeleton3D/HeadCamera" unique_id=292752730]
 unique_name_in_owner = true
-transform = Transform3D(0.9997891, -0.016735649, -0.01189893, 0.013487679, 0.9721391, -0.23401621, 0.0154838255, 0.23380637, 0.9721597, -0.017837245, 0.3952974, -0.45238853)
+transform = Transform3D(0.9997892, -0.016735654, -0.011898935, 0.013487708, 0.9721391, -0.23401606, 0.015483819, 0.23380631, 0.97215974, -0.014416426, 0.3697716, -0.41298786)
 current = true
 near = 0.001
 script = ExtResource("3_6avc5")
@@ -61,6 +62,19 @@ collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false
 
+[node name="DoorRayCast" type="RayCast3D" parent="character/骨架/Skeleton3D/HeadCamera/Camera" unique_id=831629587]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -1)
+collision_mask = 32
+
+[node name="ShieldBoneAttachment" type="BoneAttachment3D" parent="character/骨架/Skeleton3D" index="3" unique_id=985419526]
+transform = Transform3D(-0.3461606, 0.9368575, -0.049704224, 0.9372882, 0.3476507, 0.02509167, 0.04078707, -0.037901342, -0.9984487, -0.37956008, 0.98916847, -0.4654973)
+bone_name = "Hand.L"
+bone_idx = 12
+
+[node name="ShieldSlot" type="Node3D" parent="character/骨架/Skeleton3D/ShieldBoneAttachment" unique_id=1549959117]
+transform = Transform3D(0.93457925, 0.053976137, 0.35163644, 0.34092763, 0.14650097, -0.92860407, -0.10163769, 0.98773664, 0.118514806, -0.00465405, 0.0043247174, 0.113927245)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1119699540]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("CapsuleShape3D_h3w3k")
@@ -70,7 +84,7 @@ unique_name_in_owner = true
 close_weapon_deep = true
 weapon_spawn = NodePath("../WeaponSpawn")
 weapon_data = ExtResource("5_6avc5")
-weapon_placeholder = NodePath("../character/骨架/Skeleton3D/BoneAttachment3D/WeaponSlot")
+weapon_placeholder = NodePath("../character/骨架/Skeleton3D/WeaponBoneAttachment/WeaponSlot")
 weapon_reach_raycast = NodePath("../WeaponReachRaycast")
 
 [node name="WeaponSpawn" type="Node3D" parent="." unique_id=484962191]

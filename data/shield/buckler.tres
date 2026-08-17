@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ShieldData" format=3 uid="uid://h44pljq22621"]
+
+[ext_resource type="Script" uid="uid://cyme7j2jd6kpb" path="res://data/shield_data.gd" id="1_cqs4f"]
+[ext_resource type="PackedScene" uid="uid://dvo8jbwpnrk88" path="res://assets/meshes/shield/buckler.glb" id="2_einur"]
+
+[resource]
+script = ExtResource("1_cqs4f")
+name = "Buckler"
+shield_mesh = ExtResource("2_einur")
+durability = 20.0
+metadata/_custom_type_script = "uid://cyme7j2jd6kpb"
