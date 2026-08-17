@@ -4,6 +4,7 @@ class_name PickableItem
 const HIGHTLIGHT_MATERIAL:=preload("res://materials/hightlight_material.tres")
 
 @export var weapon_data:WeaponData
+@export var shield_data:ShieldData
 @onready var collision_shape: CollisionShape3D = $CollisionShape
 
 var hightlight_material:StandardMaterial3D
@@ -14,7 +15,9 @@ func _ready() -> void:
 	hightlight_material=HIGHTLIGHT_MATERIAL.duplicate()
 	if weapon_data:
 		pickable_object=weapon_data.waepon_mesh.instantiate()
-		if pickable_object!=null:
+	elif shield_data:
+		pickable_object=shield_data.shield_mesh.instantiate()
+	if pickable_object!=null:
 			add_child(pickable_object)
 			mesh_node=pickable_object.get_child(0) as MeshInstance3D
 			collision_shape.shape=mesh_node.mesh.create_convex_shape(false,true)

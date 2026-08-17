@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmfg86jn8qjol" path="res://scenes/characters/component/equipment_component.tscn" id="4_qd3e3"]
 [ext_resource type="Resource" uid="uid://bmre07o38bl3s" path="res://data/weapons/shortsword.tres" id="5_6avc5"]
 [ext_resource type="PackedScene" uid="uid://d2mdkf8ja46kr" path="res://scenes/characters/component/health_component.tscn" id="5_qd3e3"]
+[ext_resource type="Resource" uid="uid://h44pljq22621" path="res://data/shield/buckler.tres" id="6_mk55u"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h3w3k"]
 margin = 0.3
@@ -79,13 +80,15 @@ transform = Transform3D(0.93457925, 0.053976137, 0.35163644, 0.34092763, 0.14650
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("CapsuleShape3D_h3w3k")
 
-[node name="EquipmentComponent" parent="." unique_id=2035309279 node_paths=PackedStringArray("weapon_spawn", "weapon_placeholder", "weapon_reach_raycast") instance=ExtResource("4_qd3e3")]
+[node name="EquipmentComponent" parent="." unique_id=2035309279 node_paths=PackedStringArray("weapon_spawn", "weapon_placeholder", "weapon_reach_raycast", "shield_placeholder") instance=ExtResource("4_qd3e3")]
 unique_name_in_owner = true
 close_weapon_deep = true
 weapon_spawn = NodePath("../WeaponSpawn")
 weapon_data = ExtResource("5_6avc5")
 weapon_placeholder = NodePath("../character/骨架/Skeleton3D/WeaponBoneAttachment/WeaponSlot")
 weapon_reach_raycast = NodePath("../WeaponReachRaycast")
+shield_data = ExtResource("6_mk55u")
+shield_placeholder = NodePath("../character/骨架/Skeleton3D/ShieldBoneAttachment/ShieldSlot")
 
 [node name="WeaponSpawn" type="Node3D" parent="." unique_id=484962191]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5, 1.3, -0.5)

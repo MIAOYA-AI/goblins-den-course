@@ -7,5 +7,7 @@ func _enter_tree() -> void:
 	await player.animation_player.animation_finished
 	if pickable_object.weapon_data!=null:
 		player.equipment_component.equip_weapon(pickable_object.weapon_data,pickable_object.global_transform)
-		pickable_object.queue_free()
+	elif pickable_object.shield_data!=null:
+		player.equipment_component.equip_shield(pickable_object.shield_data,pickable_object.global_transform)
+	pickable_object.queue_free()
 	transition_state(Player.State.MOVING)
