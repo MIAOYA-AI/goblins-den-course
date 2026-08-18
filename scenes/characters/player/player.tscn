@@ -20,23 +20,26 @@ script = ExtResource("1_rp718")
 
 [node name="character" parent="." unique_id=2047070673 instance=ExtResource("2_yewv4")]
 
-[node name="Skeleton3D" parent="character/骨架" parent_id_path=PackedInt32Array(2047070673, 1655285631) index="0" unique_id=886099313]
+[node name="Skeleton3D" parent="character/骨架" parent_id_path=PackedInt32Array(2047070673, 289238252) index="0" unique_id=1257316072]
 bones/0/position = Vector3(0.00019862864, 0.6374467, -0.056220554)
-bones/2/rotation = Quaternion(-0.34757018, -0.023667742, -0.06027431, 0.93541527)
-bones/4/rotation = Quaternion(0.13426237, -0.13597396, 0.91711646, -0.34983176)
-bones/5/rotation = Quaternion(-0.44644755, 0.41350663, -0.18927886, 0.7706299)
-bones/5/scale = Vector3(1.0000001, 1, 1)
-bones/6/rotation = Quaternion(-0.6329034, -1.09246216e-07, -4.391676e-07, 0.7742309)
-bones/7/rotation = Quaternion(-0.0509947, -0.046676356, 0.99090207, -0.115472615)
-bones/8/rotation = Quaternion(0.19282278, 0.0027590373, -0.098009974, 0.97632265)
-bones/8/scale = Vector3(0.9999998, 0.9999999, 1.0000002)
-bones/10/rotation = Quaternion(-0.31227535, -0.35732353, 0.75903237, 0.44572848)
-bones/11/rotation = Quaternion(-0.34142908, 0.02555764, -0.043396898, 0.93855727)
-bones/13/rotation = Quaternion(0.050994672, -0.046676353, 0.99090207, 0.115472615)
-bones/14/rotation = Quaternion(0.19282275, -0.002758935, 0.09800995, 0.97632265)
+bones/0/rotation = Quaternion(0.18246374, -0.023142815, -0.037101474, 0.9822398)
+bones/2/rotation = Quaternion(-0.1939587, 1.1813961e-07, -1.9782883e-08, 0.9810097)
+bones/4/rotation = Quaternion(-0.16877438, 0.0011854161, 0.8819643, -0.44006008)
+bones/5/rotation = Quaternion(-0.33974034, 0.09761656, -0.000795463, 0.93543947)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(-0.6329034, -1.0879411e-07, -4.2389942e-07, 0.7742309)
+bones/7/rotation = Quaternion(-0.00046864332, -0.012816373, 0.9805215, -0.19599268)
+bones/8/rotation = Quaternion(0.33468407, 0.0026192244, -0.17011672, 0.9268441)
+bones/8/scale = Vector3(0.99999964, 0.99999994, 1)
+bones/10/position = Vector3(-0.3076509, 0.3906692, 0.033411223)
+bones/10/rotation = Quaternion(-0.2366224, 0.0007355937, 0.7562657, 0.60997677)
+bones/11/rotation = Quaternion(-0.33148563, 0.03103835, -0.04261604, 0.9419861)
+bones/13/position = Vector3(-0.13623042, 0.04592435, 0.09336131)
+bones/13/rotation = Quaternion(0.059780903, 0.04354559, 0.99184716, 0.10377518)
+bones/14/rotation = Quaternion(0.2569895, -0.0027058804, 0.13062531, 0.95754176)
 
 [node name="WeaponBoneAttachment" type="BoneAttachment3D" parent="character/骨架/Skeleton3D" index="0" unique_id=847768768]
-transform = Transform3D(-0.98157173, 0.18375956, 0.052436363, 0.16424158, 0.9515223, -0.2600577, -0.09768256, -0.24665302, -0.9641682, 0.48191932, 0.8374905, -0.3634235)
+transform = Transform3D(-0.55806285, 0.08487256, 0.8254466, -0.43261912, 0.81910634, -0.376703, -0.70810044, -0.56732804, -0.42039537, 0.7448255, 0.73594934, -0.038628325)
 bone_name = "Hand.R"
 bone_idx = 6
 
@@ -45,7 +48,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.8573237, -0.49326202, 0.14726989, -0.1181777, -0.46703383, -0.8763069, 0.50102884, 0.73387444, -0.45869198, 0, 0, 0)
 
 [node name="HeadCamera" type="BoneAttachment3D" parent="character/骨架/Skeleton3D" index="1" unique_id=154533938]
-transform = Transform3D(0.9916137, 0.12921543, -0.0023792314, -0.10686864, 0.83019614, 0.547132, 0.072673135, -0.5422894, 0.8370431, 0.00019862864, 1.2205093, 0.021629922)
+transform = Transform3D(0.99617577, 0.082044795, -0.030040763, -0.08133053, 0.99639153, 0.024275005, 0.031924002, -0.021738917, 0.999254, 0.038104396, 1.1848958, 0.15564093)
 bone_name = "Head"
 bone_idx = 2
 
@@ -63,13 +66,13 @@ collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="DoorRayCast" type="RayCast3D" parent="character/骨架/Skeleton3D/HeadCamera/Camera" unique_id=831629587]
+[node name="KickRayCast" type="RayCast3D" parent="character/骨架/Skeleton3D/HeadCamera/Camera" unique_id=831629587]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -1)
-collision_mask = 32
+collision_mask = 36
 
 [node name="ShieldBoneAttachment" type="BoneAttachment3D" parent="character/骨架/Skeleton3D" index="3" unique_id=985419526]
-transform = Transform3D(-0.3461606, 0.9368575, -0.049704224, 0.9372882, 0.3476507, 0.02509167, 0.04078707, -0.037901342, -0.9984487, -0.37956008, 0.98916847, -0.4654973)
+transform = Transform3D(0.04207951, 0.76825964, -0.6387538, 0.99910384, -0.02943519, 0.03041535, 0.0045651435, -0.639461, -0.7688099, -0.64477324, 1.0061214, -0.24248657)
 bone_name = "Hand.L"
 bone_idx = 12
 

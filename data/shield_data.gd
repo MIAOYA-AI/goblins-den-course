@@ -5,7 +5,7 @@ class_name ShieldData
 @export var name:String
 @export var shield_mesh:PackedScene
 @export var condition:float
-@export var max_condition:int
+@export var max_condition:float
 
 func decrease_condition(amount:int) -> void:
 	condition=clampi(condition-amount,0,max_condition)

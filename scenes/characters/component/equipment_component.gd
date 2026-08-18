@@ -48,7 +48,9 @@ func equip_shield(data:ShieldData,pickup_transform:Transform3D=Transform3D.IDENT
 	shield_placeholder.add_child(shield)
 	if pickup_transform!=Transform3D.IDENTITY:
 		# 同 equip_weapon 剥离可能被动画污染的非均匀缩放
-		shield.global_transform=Transform3D(pickup_transform.basis.orthonormalized(),pickup_transform.origin)
+		#shield.global_transform=Transform3D(pickup_transform.basis.orthonormalized(),pickup_transform.origin)
+		#拾取动画最后一帧scale没有归一导致缩放污染使拾取的物品变大 修改动画后解决 也可用以上代码解决
+		shield.global_transform = pickup_transform
 		animate_to_hand(shield)
 		
 func has_weapon() -> bool:

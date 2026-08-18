@@ -19,7 +19,7 @@ const GRAVITY:=20
 @export var duration_between_attacks:int
 @export var run_speed:float
 
-enum State {MOVING,IMPALE,DEATH,SLASHING,HURT}
+enum State {MOVING,IMPALE,DEATH,SLASHING,HURT,BLOCK,STUUNED}
 var state:State
 var state_node:EnemyState
 var time_since_last_attack:int
@@ -45,7 +45,9 @@ func switch_state(new_state:State,data:EnemyStateData=EnemyStateData.new()) -> v
 		State.IMPALE:EnemyStateImpaled,
 		State.DEATH:EnemyStateDeath,
 		State.SLASHING:EnemyStateSlashing,
-		State.HURT:EnemyStateHurt
+		State.HURT:EnemyStateHurt,
+		State.BLOCK:EnemyStateBlock,
+		State.STUUNED:EnemyStateStunned
 	}
 	state_node=state_map[new_state].new(self,data)
 	state_node.transition_requested.connect(switch_state)
@@ -68,11 +70,17 @@ func process_pushback(delta:float) -> void:
 		velocity=pushback_force
 
 func impale(thrown_item:ThrownItem,item_basis:Basis) -> void:
-	var impale_data:EnemyStateData=EnemyStateData.new()
-	impale_data.impaled_item_weapon_data=thrown_item.weapon_data
-	impale_data.thrown_item_basis=item_basis
-	switch_state(State.IMPALE,impale_data)
-	thrown_item.queue_free()
+	if equipment_component.has_shield() and state!=State.STUUNED:
+		switch_state(State.BLOCK)
+	else:
+		var impale_data:EnemyStateData=EnemyStateData.new()
+		impale_data.impaled_item_weapon_data=thrown_item.weapon_data
+		impale_data.thrown_item_basis=item_basis
+		switch_state(State.IMPALE,impale_data)
+		thrown_item.queue_free()
+
+func on_kicked() -> void:
+	switch_state(State.STUUNED)
 	
 func on_player_detected(body:Node3D) -> void:
 	player=body
@@ -89,8 +97,11 @@ func is_player_within_reach() -> bool:
 func try_recrive_hit(damage:int,source_player:Player) -> void:
 	screamed.emit()
 	player=source_player
-	var impact_direction:Vector3=(global_position-source_player.global_position).normalized()
-	var damage_data:EnemyStateData=EnemyStateData.new()
-	damage_data.damage=damage
-	damage_data.impulse_direction=impact_direction
-	switch_state(Enemy.State.HURT,damage_data)
+	if equipment_component.has_shield() and state!=State.STUUNED:
+		switch_state(State.BLOCK)
+	else:
+		var impact_direction:Vector3=(global_position-source_player.global_position).normalized()
+		var damage_data:EnemyStateData=EnemyStateData.new()
+		damage_data.damage=damage
+		damage_data.impulse_direction=impact_direction
+		switch_state(Enemy.State.HURT,damage_data)

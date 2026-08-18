@@ -3,7 +3,8 @@ class_name EnemyStateDeath
 
 func _enter_tree() -> void:
 	#丢下手里武器
-	enemy.equipment_component.throw_object(true)
+	enemy.equipment_component.throw_weapon(true)
+	enemy.equipment_component.throw_shield()
 	enemy.collision_shape.disabled=true
 	enemy.skeleton_simulator.active=true
 	enemy.skeleton_simulator.physical_bones_start_simulation()
