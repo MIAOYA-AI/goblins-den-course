@@ -4,6 +4,8 @@ class_name EnemyState
 var enemy:Enemy
 var state_data:EnemyStateData
 
+const DECELERATION:float=10
+
 signal transition_requested(new_state:Enemy.State,source_data:EnemyStateData)
 
 func _init(source_enemy:Enemy,source_data:EnemyStateData=EnemyStateData.new()) -> void:

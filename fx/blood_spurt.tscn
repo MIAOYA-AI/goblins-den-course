@@ -87,7 +87,7 @@ emission_energy_multiplier = 2.0
 material = SubResource("StandardMaterial3D_3dqc5")
 size = Vector3(0.05, 0.05, 0.05)
 
-[node name="BloodSport" type="Node3D" unique_id=1663808451]
+[node name="BloodSpurt" type="Node3D" unique_id=1663808451]
 script = ExtResource("1_qas0q")
 
 [node name="Blood" type="GPUParticles3D" parent="." unique_id=255614264]

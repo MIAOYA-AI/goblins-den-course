@@ -7,3 +7,6 @@ func release_blood(position:Vector3,show_sparks:bool) -> void:
 	blood_fx.show_sparks=show_sparks
 	GameState.current_level.add_child(blood_fx)
 	blood_fx.global_position=position
+
+func release_metal_spark(position:Vector3) -> void:
+	pass

@@ -1,6 +1,8 @@
 extends Node
 class_name PlayerState
 
+const DECELERATION:float=20
+
 signal transition_requested(new_state:Player.State)
 
 var player:Player

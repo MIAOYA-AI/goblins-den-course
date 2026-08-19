@@ -4,13 +4,13 @@ class_name PlayerStateMoving
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("use") and player.can_pickup_object():
 		transition_state(Player.State.PICKING_UP)
-	if Input.is_action_just_pressed("throw"):
+	elif Input.is_action_just_pressed("throw") and player.equipment_component.has_weapon():
 		transition_state(Player.State.THROWING)
-	if Input.is_action_just_pressed("action"):
+	elif Input.is_action_just_pressed("action") and player.equipment_component.has_weapon():
 		transition_state(Player.State.ATTACKING)
-	if Input.is_action_just_pressed("kick"):
+	elif Input.is_action_just_pressed("kick"):
 		transition_state(Player.State.KICKING)
-	if Input.is_action_just_pressed("block"):
+	elif Input.is_action_just_pressed("block") and player.equipment_component.has_shield():
 		transition_state(Player.State.BLOCK)
 
 func _physics_process(delta: float) -> void:

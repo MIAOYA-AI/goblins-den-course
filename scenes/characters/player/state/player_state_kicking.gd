@@ -1,15 +1,14 @@
 extends PlayerState
 class_name PlayerStateKicking
 
-const DECELERATION:float=20
-
 func _ready() -> void:
 	player.animation_player.play("kick")
 	if player.kick_ray_cast.is_colliding():
-		if player.kick_ray_cast.get_collider() is Door:
-			(player.kick_ray_cast.get_collider() as Door).open(player.global_position)
-		elif player.kick_ray_cast.get_collider() is Enemy:
-			(player.kick_ray_cast.get_collider() as Enemy).on_kicked()
+		var collider=player.kick_ray_cast.get_collider() as Node
+		if collider is Door:
+			(collider as Door).open(player.global_position)
+		elif collider is Enemy:
+			(collider as Enemy).on_kicked()
 	await player.animation_player.animation_finished
 	transition_state(Player.State.MOVING)
 	
