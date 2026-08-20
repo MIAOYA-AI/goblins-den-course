@@ -19,3 +19,5 @@ cell_size = Vector3(1, 1, 1)
 cell_center_y = false
 
 [node name="Doors" type="Node3D" parent="." unique_id=903260460]
+
+[node name="Traps" type="Node3D" parent="." unique_id=1773761155]

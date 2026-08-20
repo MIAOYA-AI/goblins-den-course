@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bu6g5h8et62ur"]
+
+[ext_resource type="PackedScene" uid="uid://bog4ssp0rn1oq" path="res://assets/meshes/traps/spikes.glb" id="1_3h3hk"]
+[ext_resource type="Script" uid="uid://cuwsgmuvxrdr7" path="res://scenes/traps/spikes_trap.gd" id="1_fjxlh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxn5e"]
+albedo_color = Color(0.7090323, 0.7873665, 0.82090455, 1)
+metallic = 1.0
+roughness = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h3w3k"]
+size = Vector3(0.75, 1.947, 0.23154297)
+
+[node name="SpikesTrap" type="Area3D" unique_id=1489094132]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_fjxlh")
+
+[node name="spikes" parent="." unique_id=1442049937 instance=ExtResource("1_3h3hk")]
+
+[node name="spikes" parent="spikes" index="0" unique_id=850488880]
+surface_material_override/0 = SubResource("StandardMaterial3D_jxn5e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=801543627]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027053833, 1.0130656, -0.11565553)
+shape = SubResource("BoxShape3D_h3w3k")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=1363846071]
+vertices = PackedVector3Array(-0.8867987, 0, -0.017564774, -0.46129668, 0, -0.88734543, 0.01745677, 0, -0.96912444, 0.5693019, 0, -0.93892133, 0.9194322, 0, -0.011945009)
+
+[editable path="spikes"]

@@ -88,7 +88,7 @@ func on_kicked() -> void:
 	if player!=null:
 		var kick_direction:Vector3=(global_position-player.global_position).normalized()
 		state_data.impulse_direction=kick_direction
-	if can_be_stuuned() or equipment_component.has_shield():
+	if can_be_stuuned() or !equipment_component.has_shield():
 		switch_state(State.STUUNED,state_data)
 	else:
 		switch_state(State.BLOCK,state_data)
@@ -122,3 +122,10 @@ func try_recrive_hit(damage:int,source_player:Player) -> void:
 	else:
 		damage_data.damage=damage
 		switch_state(State.HURT,damage_data)
+		
+func can_dead() -> bool:
+	return state!=State.DEATH
+		
+func take_trap_damage() -> void:
+	if can_dead():
+		switch_state(State.DEATH)

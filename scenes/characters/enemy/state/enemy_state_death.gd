@@ -3,6 +3,7 @@ class_name EnemyStateDeath
 
 func _enter_tree() -> void:
 	#丢下手里武器
+	GameEvents.impact_felt.emit(GameEvents.ImpactIntensity.LOW)
 	enemy.equipment_component.throw_weapon(true)
 	enemy.equipment_component.throw_shield()
 	enemy.collision_shape.disabled=true

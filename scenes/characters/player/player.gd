@@ -102,3 +102,13 @@ func check_for_pickable_item() -> void:
 
 func can_pickup_object() -> bool:
 	return current_focused_item!=null
+	
+func can_get_hurt() -> bool:
+	return state!=State.BLOCK
+	
+func try_receive_hit(source_enemy:Enemy,damage:float) -> void:
+	if can_get_hurt():
+		GameEvents.player_hurt.emit(self)
+	
+func take_trap_damage() -> void:
+	print("wo cao")

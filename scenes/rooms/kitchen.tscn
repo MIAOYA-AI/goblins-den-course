@@ -2,14 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://dvre4shd8agg2" path="res://scenes/rooms/base_room.tscn" id="1_3w07q"]
 [ext_resource type="PackedScene" uid="uid://bpc7hruxg3yjf" path="res://scenes/characters/enemy/goblin.tscn" id="2_p7bu6"]
+[ext_resource type="PackedScene" uid="uid://bu6g5h8et62ur" path="res://scenes/traps/spikes_trap.tscn" id="2_sqdrw"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_httdh"]
-vertices = PackedVector3Array(-2.5, 0.5, -7.25, -6.75, 0.5, -7.5, -8.25, 0.5, -7.25, -8.25, 0.5, 0.25, -2.5, 0.5, 0, 8.5, 0.5, -7.25, 6.75, 0.5, -7.5, 2.75, 0.5, -7.25, 2.75, 0.5, -0.25, 8.5, 0.5, 0, 2.75, 0.5, 1.25, 2.25, 0.5, 1.75, 0, 0.5, 1.75, 0, 0.5, 7.25, 8.5, 0.5, 7.25, -2.25, 0.5, 1.75, -8.25, 0.5, 7.25)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 8), PackedInt32Array(8, 5, 9), PackedInt32Array(10, 8, 9), PackedInt32Array(13, 12, 11), PackedInt32Array(10, 9, 11), PackedInt32Array(11, 9, 14), PackedInt32Array(11, 14, 13), PackedInt32Array(15, 12, 13), PackedInt32Array(3, 4, 15), PackedInt32Array(3, 15, 16), PackedInt32Array(16, 15, 13)]
+vertices = PackedVector3Array(-3, 0.5, -6.75, -6.75, 0.5, -7, -7.75, 0.5, -6.75, -7.75, 0.5, 0.25, -3, 0.5, 0, 8, 0.5, -6.75, 6.75, 0.5, -7, 3.25, 0.5, -6.75, 3.25, 0.5, -0.25, 8, 0.5, 0, 3.25, 0.5, 1.25, 2.25, 0.5, 2.25, 0, 0.5, 2.25, 0, 0.5, 6.75, 8, 0.5, 6.75, -3, 0.5, 1.5, -2.25, 0.5, 2.25, -7.75, 0.5, 6.75)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 8), PackedInt32Array(8, 5, 9), PackedInt32Array(10, 8, 9), PackedInt32Array(13, 12, 11), PackedInt32Array(10, 9, 11), PackedInt32Array(11, 9, 14), PackedInt32Array(11, 14, 13), PackedInt32Array(3, 4, 15), PackedInt32Array(16, 12, 13), PackedInt32Array(15, 16, 3), PackedInt32Array(3, 16, 17), PackedInt32Array(17, 16, 13)]
 
 [node name="Kitchen" unique_id=65457442 instance=ExtResource("1_3w07q")]
 
-[node name="RoomNavigation" parent="." index="1" unique_id=235192493]
+[node name="SpikesTrap" parent="." index="0" unique_id=1489094132 instance=ExtResource("2_sqdrw")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0.95686376)
+
+[node name="RoomNavigation" parent="." index="2" unique_id=235192493]
 navigation_mesh = SubResource("NavigationMesh_httdh")
 
 [node name="Floors" parent="RoomNavigation" index="0" unique_id=1309390559]
@@ -22,3 +26,59 @@ transform = Transform3D(0.90033543, 0, 0.43519664, 0, 1, 0, -0.43519664, 0, 0.90
 
 [node name="Goblin2" parent="Enemies" parent_id_path=PackedInt32Array(895886982) index="1" unique_id=477108518 instance=ExtResource("2_p7bu6")]
 transform = Transform3D(0.9615347, 0, -0.2746836, 0, 1, 0, 0.2746836, 0, 0.9615347, -5.0878386, 0, 3.7483244)
+
+[node name="Physical Bone Torso" parent="Enemies/Goblin2/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(477108518, 366939794) index="0" unique_id=939935600]
+transform = Transform3D(1, -2.9802322e-07, -1.1175871e-08, -5.446377e-08, -0.1323453, -0.99120367, 2.9802322e-07, 0.9912038, -0.13234529, 0.00019741058, 0.9289768, -0.01730156)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.569629e-07, 5.6847916e-06, 0.2941165)
+body_offset = Transform3D(1.0000001, -2.9802322e-07, -1.1175871e-08, -1.1175871e-08, 1.2665987e-07, -1, 3.2782555e-07, 1.0000002, 1.2665987e-07, -9.536743e-07, 0.2941165, -5.722046e-06)
+
+[node name="Physical Bone Head" parent="Enemies/Goblin2/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(477108518, 366939794) index="1" unique_id=224980282]
+transform = Transform3D(1, 4.4703484e-07, 2.2351742e-08, -9.268698e-08, 0.25481555, -0.9669897, -4.4703484e-07, 0.96698976, 0.25481555, 0.00019907951, 1.4020795, -0.026216507)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8103414e-07, 2.797853e-09, 0.18776843)
+body_offset = Transform3D(1, 2.3841858e-07, 2.2351742e-08, 2.9802322e-08, -1.4901161e-08, -1.0000001, -2.3841858e-07, 1, -1.4901161e-08, 4.7683716e-07, 0.18776846, 0)
+
+[node name="Physical Bone UpperArm_R" parent="Enemies/Goblin2/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(477108518, 366939794) index="2" unique_id=596387294]
+transform = Transform3D(-0.81085366, 0.5725735, -0.12114471, -0.5290334, -0.62857133, 0.5701068, 0.2502799, 0.5263629, 0.8125898, 0.32275295, 0.9501362, -0.07134533)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1313317e-06, -2.0116568e-06, 0.122996755)
+body_offset = Transform3D(0.96438897, 0.05493275, -0.25872037, -0.24706407, 0.536271, -0.80707645, 0.0944093, 0.8422563, 0.53074586, 0.03181982, 0.09926939, -0.06527853)
+
+[node name="Physical Bone LowerArm_R" parent="Enemies/Goblin2/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(477108518, 366939794) index="3" unique_id=587459012]
+transform = Transform3D(-0.75202435, -0.03507083, 0.6582017, -0.34837487, -0.8265619, -0.44207516, 0.5595484, -0.56175226, 0.60937685, 0.23253036, 0.99599564, -0.1915636)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.056661457, 0.04408641, 0.2782088)
+body_offset = Transform3D(0.86735266, 0.44374162, -0.22537132, -0.497693, 0.77406085, -0.39132017, 0.0008061379, 0.45157844, 0.892231, 0.09228277, 0.04654312, -0.2680893)
+
+[node name="Physical Bone UpperLeg_R" parent="Enemies/Goblin2/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(477108518, 366939794) index="4" unique_id=1504103985]
+transform = Transform3D(-0.9407975, -0.22428869, -0.25415483, -0.19630888, -0.2507357, 0.9479422, -0.27633846, 0.9417145, 0.19186164, 0.18208289, 0.4999601, 0.008543968)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.602081e-05, -0.0006682512, 0.17986578)
+body_offset = Transform3D(0.9903418, 0.13679716, 0.02257729, 0.024222188, -0.010371655, -0.9996528, -0.13651553, 0.99054456, -0.013584986, -0.00406456, 0.17979407, 0.003118515)
+
+[node name="Physical Bone LowerLeg_R" parent="Enemies/Goblin2/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(477108518, 366939794) index="5" unique_id=1706549148]
+transform = Transform3D(-0.96124387, -0.27389535, 0.03148951, -0.005550088, 0.1334177, 0.99104434, -0.27564374, 0.9524605, -0.12976708, 0.22284126, 0.16984692, -0.00578928)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008726168, -0.003685957, 0.16082536)
+body_offset = Transform3D(0.9903581, 0.13619384, -0.025346883, -0.027157739, 0.011453964, -0.9995657, -0.13584423, 0.9906156, 0.015042417, -0.0040636063, 0.1610347, 0.0024175644)
+
+[node name="Physical Bone UpperArm_L" parent="Enemies/Goblin2/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(477108518, 366939794) index="6" unique_id=2037979909]
+transform = Transform3D(-0.32558626, -0.7849703, -0.5270818, 0.94346255, -0.23303051, -0.23574403, 0.06222592, -0.57403696, 0.8164616, -0.24262404, 1.0492481, -0.07182121)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5015477e-06, -1.527369e-06, 0.12299436)
+body_offset = Transform3D(0.9914226, 0.12746143, -0.028888553, -0.12812567, 0.90429056, -0.40723723, -0.02578348, 0.40744555, 0.91286546, 0.0035488605, 0.050089836, -0.112276554)
+
+[node name="Physical Bone LowerArm_L" parent="Enemies/Goblin2/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(477108518, 366939794) index="7" unique_id=1379587394]
+transform = Transform3D(-0.3862599, 0.08353934, -0.9185993, 0.9128635, 0.17738359, -0.36771646, 0.13222563, -0.98058975, -0.14477624, -0.06314182, 1.112648, -0.052838802)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016981367, 0.071084075, 0.40100038)
+body_offset = Transform3D(0.9947171, 0.097345546, -0.032578092, -0.09796862, 0.9950245, -0.018107057, 0.030653358, 0.021202773, 0.99930525, 0.023035765, -0.065133095, -0.40170836)
+
+[node name="Physical Bone UpperLeg_L" parent="Enemies/Goblin2/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(477108518, 366939794) index="8" unique_id=1398144603]
+transform = Transform3D(-0.94079745, 0.22428843, 0.25415525, 0.19630922, -0.25073615, 0.947942, 0.2763383, 0.9417145, 0.19186202, -0.18177962, 0.49998125, 0.007855892)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6623526e-06, 5.572103e-06, 0.18000148)
+body_offset = Transform3D(0.99034166, -0.1367971, -0.022577666, -0.024222549, -0.010371149, -0.9996528, 0.1365154, 0.9905447, -0.013584584, 0.0040631294, 0.17993909, 0.002439499)
+
+[node name="Physical Bone LowerLeg_L" parent="Enemies/Goblin2/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(477108518, 366939794) index="9" unique_id=2004116743]
+transform = Transform3D(-0.96124387, 0.27389613, -0.03148337, 0.005556259, 0.13341676, 0.99104446, 0.27564362, 0.95246047, -0.1297679, -0.22246146, 0.16987158, -0.0057878494)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008742405, -0.003686247, 0.1608006)
+body_offset = Transform3D(0.9903578, -0.13619478, 0.025340775, 0.027151681, 0.01145488, -0.9995658, 0.13584529, 0.99061567, 0.015042499, 0.0040812492, 0.16101038, 0.0024204254)
+
+[node name="EquipmentComponent" parent="Enemies/Goblin2" index="2" unique_id=2035309279]
+shield_data = null
+
+[editable path="Enemies/Goblin2"]
+[editable path="Enemies/Goblin2/character"]

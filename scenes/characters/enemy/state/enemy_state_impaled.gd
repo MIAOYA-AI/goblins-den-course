@@ -13,5 +13,5 @@ func _enter_tree() -> void:
 	impaled_item.rotate_object_local(Vector3.UP,impaled_item.weapon_data.implate_local_rotation)
 	state_data.impulse_direction=state_data.thrown_item_basis*Vector3.FORWARD*state_data.IMPALE_INTENSITY+Vector3.UP*state_data.IMPALE_INTENSITY
 	# 击中敌人时暂停几帧并震动屏幕 效果不佳 时间点不对 体感像卡顿
-	GameEvents.impact_felt.emit(GameEvents.ImpactIntensity.MEDIUM)
+	#GameEvents.impact_felt.emit(GameEvents.ImpactIntensity.MEDIUM)
 	transition_state(Enemy.State.DEATH,state_data)
