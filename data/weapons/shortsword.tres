@@ -13,6 +13,6 @@ damage_max = 50
 reach = 5.0
 throw_rotation_speed = 30.0
 throw_movement_speed = 50.0
-waepon_mesh = ExtResource("2_joehd")
+glb_mesh = ExtResource("2_joehd")
 implale_local_translations = Vector3(0, 0, 0.6)
 metadata/_custom_type_script = "uid://duyj4lg5yvlvc"

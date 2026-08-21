@@ -9,7 +9,7 @@ class_name WeaponData
 @export var reach:float
 @export var throw_rotation_speed:float
 @export var throw_movement_speed:float
-@export var waepon_mesh:PackedScene
+@export var glb_mesh:PackedScene
 @export var implale_local_translations:Vector3
 @export var implate_local_rotation:float
 

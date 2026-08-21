@@ -109,6 +109,7 @@ restart={
 3d_physics/layer_4="PickableItem"
 3d_physics/layer_5="Projectiles"
 3d_physics/layer_6="Door"
+3d_physics/layer_7="Furniture"
 
 [physics]
 

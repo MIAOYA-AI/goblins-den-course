@@ -21,19 +21,15 @@ subdivide_depth = 16
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3dqc5"]
 
-[node name="AcidTrap" type="Node3D" unique_id=404298332]
+[node name="AcidTrap" type="Area3D" unique_id=53563161]
+collision_layer = 0
+collision_mask = 6
 script = ExtResource("1_eld0c")
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=1346118673]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.2, 0.5)
 mesh = SubResource("PlaneMesh_h3w3k")
 
-[node name="BodyDetection" type="Area3D" parent="." unique_id=178984498]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BodyDetection" unique_id=2101087524]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.83373654, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2101087524]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.83373654, 0.5)
 shape = SubResource("BoxShape3D_3dqc5")

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bp2877brpy74p"]
+
+[ext_resource type="PackedScene" uid="uid://cg5to3gopwqho" path="res://scenes/equipment/pickable_item.tscn" id="1_mmi0q"]
+[ext_resource type="Resource" uid="uid://cjq4eveslcfua" path="res://data/furniture/barrel.tres" id="2_5377x"]
+
+[node name="Barrel" unique_id=1637038218 instance=ExtResource("1_mmi0q")]
+furniture_data = ExtResource("2_5377x")

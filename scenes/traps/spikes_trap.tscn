@@ -18,7 +18,7 @@ script = ExtResource("1_fjxlh")
 
 [node name="spikes" parent="." unique_id=1442049937 instance=ExtResource("1_3h3hk")]
 
-[node name="spikes" parent="spikes" index="0" unique_id=850488880]
+[node name="spikes" parent="spikes" index="0" unique_id=97746587]
 surface_material_override/0 = SubResource("StandardMaterial3D_jxn5e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=801543627]

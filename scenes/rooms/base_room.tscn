@@ -24,3 +24,5 @@ cell_center_y = false
 
 [node name="Enemies" type="Node3D" parent="." unique_id=895886982]
 unique_name_in_owner = true
+
+[node name="AcidTraps" type="Node3D" parent="." unique_id=325750751]

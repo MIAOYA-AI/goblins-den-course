@@ -15,31 +15,33 @@ height = 1.7
 
 [node name="Player" type="CharacterBody3D" unique_id=310797534]
 collision_layer = 2
-collision_mask = 37
+collision_mask = 101
 script = ExtResource("1_rp718")
 
 [node name="character" parent="." unique_id=2047070673 instance=ExtResource("2_yewv4")]
 
-[node name="Skeleton3D" parent="character/骨架" parent_id_path=PackedInt32Array(2047070673, 1261654011) index="0" unique_id=95668968]
+[node name="Skeleton3D" parent="character/骨架" parent_id_path=PackedInt32Array(2047070673, 1525520027) index="0" unique_id=1596938379]
 bones/0/position = Vector3(0.00019862864, 0.6374467, -0.056220554)
-bones/0/rotation = Quaternion(0.06631871, 0, 0, 0.9977985)
 bones/2/rotation = Quaternion(-0.1939587, 1.16945465e-07, -2.3121682e-08, 0.9810097)
-bones/4/rotation = Quaternion(0.13426237, -0.13597398, 0.9171164, -0.3498318)
-bones/5/rotation = Quaternion(-0.40449694, 0.046905637, -0.06559011, 0.91097754)
+bones/4/position = Vector3(0.3076509, 0.39066908, 0.033411175)
+bones/4/rotation = Quaternion(0.2136508, -0.5445635, 0.7934776, -0.1679207)
+bones/4/scale = Vector3(0.9999999, 1, 1)
+bones/5/rotation = Quaternion(-0.38417158, 0.14503758, -0.047454003, 0.9105627)
 bones/5/scale = Vector3(1.0000001, 1, 1)
 bones/6/rotation = Quaternion(-0.6329034, -1.0550932e-07, -4.4342522e-07, 0.7742309)
 bones/7/rotation = Quaternion(-0.0509947, -0.046676356, 0.99090207, -0.115472615)
-bones/8/rotation = Quaternion(0.19282277, 0.0027590368, -0.098009974, 0.97632265)
+bones/8/rotation = Quaternion(0.19282278, 0.0027590373, -0.098009974, 0.97632265)
 bones/8/scale = Vector3(0.9999998, 0.9999999, 1.0000002)
 bones/10/position = Vector3(-0.30765092, 0.3906691, 0.033411175)
 bones/10/rotation = Quaternion(-0.31227535, -0.35732353, 0.75903237, 0.44572848)
+bones/10/scale = Vector3(1.0000001, 1, 1)
 bones/11/rotation = Quaternion(-0.34142908, 0.02555764, -0.043396898, 0.93855727)
 bones/13/position = Vector3(-0.1362304, 0.045924317, 0.093361266)
 bones/13/rotation = Quaternion(0.050994672, -0.046676353, 0.99090207, 0.115472615)
-bones/14/rotation = Quaternion(0.19282275, -0.0027589367, 0.09800996, 0.97632265)
+bones/14/rotation = Quaternion(0.19282275, -0.002758935, 0.09800995, 0.97632265)
 
 [node name="WeaponBoneAttachment" type="BoneAttachment3D" parent="character/骨架/Skeleton3D" index="0" unique_id=847768768]
-transform = Transform3D(-0.81617254, -0.54161286, 0.20129159, -0.56931335, 0.694278, -0.440296, 0.09871764, -0.47395527, -0.8749978, 0.4823864, 0.772192, -0.35133058)
+transform = Transform3D(-0.938131, -0.17574115, -0.2983708, -0.25887457, 0.9282086, 0.26723078, 0.22998703, 0.32793814, -0.9162763, 0.2223224, 1.0932518, -0.4497339)
 bone_name = "Hand.R"
 bone_idx = 6
 
@@ -48,13 +50,13 @@ unique_name_in_owner = true
 transform = Transform3D(0.8573237, -0.49326202, 0.14726989, -0.1181777, -0.46703383, -0.8763069, 0.50102884, 0.73387444, -0.45869198, 0, 0, 0)
 
 [node name="HeadCamera" type="BoneAttachment3D" parent="character/骨架/Skeleton3D" index="1" unique_id=154533938]
-transform = Transform3D(1, 1.0658141e-14, 2.384186e-07, -6.0752754e-08, 0.9669897, 0.25481558, -2.305483e-07, -0.25481552, 0.9669898, 0.00019862864, 1.2205093, 0.021629907)
+transform = Transform3D(1, 1.0658141e-14, 2.384186e-07, -6.0752754e-08, 0.9669897, 0.25481555, -2.305483e-07, -0.25481552, 0.9669898, 0.00019862864, 1.2205093, 0.021629922)
 bone_name = "Head"
 bone_idx = 2
 
 [node name="Camera" type="Camera3D" parent="character/骨架/Skeleton3D/HeadCamera" unique_id=292752730]
 unique_name_in_owner = true
-transform = Transform3D(0.9997892, -0.016735654, -0.011898935, 0.013487708, 0.9721391, -0.23401606, 0.015483819, 0.23380631, 0.97215974, -0.014416426, 0.3697716, -0.41298786)
+transform = Transform3D(0.9997892, -0.016735673, -0.011898916, 0.013487707, 0.9721392, -0.23401618, 0.015483819, 0.23380634, 0.97215974, -0.014416443, 0.35108113, -0.34206012)
 current = true
 near = 0.001
 script = ExtResource("3_6avc5")
@@ -62,9 +64,7 @@ script = ExtResource("3_6avc5")
 [node name="SelectRayCast" type="RayCast3D" parent="character/骨架/Skeleton3D/HeadCamera/Camera" unique_id=1166788036]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -3)
-collision_mask = 8
-collide_with_areas = true
-collide_with_bodies = false
+collision_mask = 72
 
 [node name="KickRayCast" type="RayCast3D" parent="character/骨架/Skeleton3D/HeadCamera/Camera" unique_id=831629587]
 unique_name_in_owner = true
@@ -72,7 +72,7 @@ target_position = Vector3(0, 0, -1)
 collision_mask = 36
 
 [node name="ShieldBoneAttachment" type="BoneAttachment3D" parent="character/骨架/Skeleton3D" index="3" unique_id=985419526]
-transform = Transform3D(-0.3461606, 0.9368575, -0.049704224, 0.9372882, 0.3476507, 0.02509167, 0.040787064, -0.037901342, -0.9984487, -0.37956005, 0.98916835, -0.46549731)
+transform = Transform3D(-0.34616062, 0.93685746, -0.04970415, 0.9372882, 0.3476507, 0.025091685, 0.040787064, -0.037901387, -0.99844867, -0.37956005, 0.98916835, -0.4654973)
 bone_name = "Hand.L"
 bone_idx = 12
 
@@ -83,8 +83,9 @@ transform = Transform3D(0.93457925, 0.053976137, 0.35163644, 0.34092763, 0.14650
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("CapsuleShape3D_h3w3k")
 
-[node name="EquipmentComponent" parent="." unique_id=2035309279 node_paths=PackedStringArray("weapon_spawn", "weapon_placeholder", "weapon_reach_raycast", "shield_placeholder") instance=ExtResource("4_qd3e3")]
+[node name="EquipmentComponent" parent="." unique_id=2035309279 node_paths=PackedStringArray("furniture_placeholder", "weapon_spawn", "weapon_placeholder", "weapon_reach_raycast", "shield_placeholder") instance=ExtResource("4_qd3e3")]
 unique_name_in_owner = true
+furniture_placeholder = NodePath("../FurnitureSlot")
 close_weapon_deep = true
 weapon_spawn = NodePath("../WeaponSpawn")
 weapon_data = ExtResource("5_6avc5")
@@ -106,5 +107,8 @@ collision_mask = 4
 unique_name_in_owner = true
 max_health = 10
 cur_health = 10
+
+[node name="FurnitureSlot" type="Node3D" parent="." unique_id=989801097]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.54083574, 1.916718, -0.68167305)
 
 [editable path="character"]

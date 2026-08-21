@@ -4,6 +4,8 @@ class_name EquipmentComponent
 const EQUIPED_ITEM_PREFAB:=preload("res://scenes/equipment/equiped_item.tscn")
 const THROW_ITEM_PREFAB:=preload("res://scenes/equipment/thrown_item.tscn")
 
+@export var furniture_data:FurnitureData
+@export var furniture_placeholder:Node3D
 @export var close_weapon_deep:bool
 @export var weapon_spawn:Node3D
 @export var weapon_data:WeaponData
@@ -53,15 +55,58 @@ func equip_shield(data:ShieldData,pickup_transform:Transform3D=Transform3D.IDENT
 		shield.global_transform = pickup_transform
 		animate_to_hand(shield)
 		
+func equip_furniture(data:FurnitureData,pickup_transform:Transform3D=Transform3D.IDENTITY)-> void:
+	# 先清空手上的装备
+	if has_weapon():
+		set_weapon_visible(false)
+	
+	if has_shield():
+		set_shield_visible(false)
+
+	# 引用同一个资源时属性是全局共享的 因此这里需要创建一个副本
+	furniture_data=data.duplicate()
+	var furniture:=EQUIPED_ITEM_PREFAB.instantiate() as EquipedItem
+	furniture.furniture_data=data
+	furniture.close_deep=close_weapon_deep
+	furniture_placeholder.add_child(furniture)
+	# 先将武器设为拾取物品的位置与旋转 然后使用动画让变换归零
+	if pickup_transform!=Transform3D.IDENTITY:
+		# 拾取变换可能携带动画骨骼残留的非均匀缩放 正交归一将其剥离
+		furniture.global_transform=Transform3D(pickup_transform.basis.orthonormalized(),pickup_transform.origin)
+		animate_to_hand(furniture)
+		
 func has_weapon() -> bool:
 	return weapon_data != null and weapon_placeholder!=null and weapon_placeholder.get_child_count()>0
-	
-func has_shield() -> bool:
-	return shield_data!=null and shield_placeholder!=null and shield_placeholder.get_child_count()>0
 
 func get_weapon() -> EquipedItem:
 	if has_weapon():
 		return weapon_placeholder.get_child(0) as EquipedItem
+	else:
+		return null
+
+func set_weapon_visible(flag:bool) -> void:
+	if has_weapon():
+		get_weapon().visible=flag
+	
+func has_shield() -> bool:
+	return shield_data!=null and shield_placeholder!=null and shield_placeholder.get_child_count()>0
+
+func get_shield() -> EquipedItem:
+	if has_shield():
+		return shield_placeholder.get_child(0) as EquipedItem
+	else:
+		return null
+		
+func set_shield_visible(flag:bool) -> void:
+	if has_shield():
+		get_shield().visible=flag
+		
+func has_furniture() -> bool:
+	return furniture_data!=null and furniture_placeholder!=null and furniture_placeholder.get_child_count()>0
+	
+func get_furniture() -> EquipedItem:
+	if has_furniture():
+		return furniture_placeholder.get_child(0) as EquipedItem
 	else:
 		return null
 
@@ -98,3 +143,12 @@ func throw_shield() -> void:
 		shield_data=null
 		shield_placeholder.get_child(0).queue_free()
 		
+func throw_furniture()->void:
+	if has_furniture():
+		var throw_item:ThrownItem= THROW_ITEM_PREFAB.instantiate() as ThrownItem
+		throw_item.is_being_dropped=false
+		throw_item.furniture_data=furniture_data
+		throw_item.global_transform=get_furniture().global_transform
+		GameState.current_level.add_child(throw_item)
+		furniture_data=null
+		furniture_placeholder.get_child(0).queue_free()

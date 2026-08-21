@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dvre4shd8agg2" path="res://scenes/rooms/base_room.tscn" id="1_5doc6"]
 [ext_resource type="PackedScene" uid="uid://bpc7hruxg3yjf" path="res://scenes/characters/enemy/goblin.tscn" id="2_n7vah"]
 [ext_resource type="Resource" uid="uid://bmre07o38bl3s" path="res://data/weapons/shortsword.tres" id="3_nipdr"]
+[ext_resource type="PackedScene" uid="uid://nmr61w0m7yi0" path="res://scenes/traps/acid_trap.tscn" id="4_nipdr"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_oxyh5"]
 vertices = PackedVector3Array(-2.5, 0.5, -4.5, -2, 0.5, -1.5, 0.25, 0.5, -1.5, 3.5, 0.5, -4.5, 3.5, 0.5, -7.25, -2.25, 0.5, -7.25, 0.5, 0.5, -1, 4, 0.5, -4.25, -2.5, 0.5, 4.5, -2, 0.5, 1.5, -2.5, 0.5, 1.25, -6.25, 0.5, 4.5, -2.5, 0.5, -1.25, -6.25, 0.5, -4.25, 0.5, 0.5, 1, 4, 0.5, 4.5, 7.5, 0.5, 4.5, 7.5, 0.5, -4.25, -1.25, -2.5, -0.25, -1.25, -2.5, 0.5, -0.5, -2.5, 0.5, -0.5, -2.5, -0.25, -2.25, 0.5, 7.25, -0.75, 0.5, 7.5, 0.25, 0.5, 1.5, 3.5, 0.5, 7.25, 3.5, 0.5, 4.75)
@@ -43,9 +44,9 @@ transform = Transform3D(-0.44451797, 1.1920929e-07, 0.8957697, -0.89576983, -4.4
 transform = Transform3D(-0.4445183, -1.4901161e-08, -0.89576983, 0.89576966, 2.2351742e-08, -0.4445184, 4.7811625e-08, -0.99999976, 1.4901161e-08, -0.76798964, 0.77097964, 6.3329935e-08)
 
 [node name="Physical Bone Torso" parent="Enemies/Goblin/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(856469443, 366939794) index="0" unique_id=939935600]
-transform = Transform3D(1, 0, 0, 0, -0.13234542, -0.99120367, 0, 0.99120367, -0.13234542, 0.00021576881, 0.9313414, -0.017299652)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.716833e-05, 4.289343e-06, 0.29411703)
-body_offset = Transform3D(1, -2.9802322e-08, 7.450581e-09, 0, 7.450581e-09, -1, 0, 1, 7.450581e-09, 1.7166138e-05, 0.29411703, -4.2915344e-06)
+transform = Transform3D(1, 0, 0, 0, -0.13234542, -0.99120367, 0, 0.99120367, -0.13234541, 0.00021576881, 0.9313414, -0.017299652)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.716833e-05, 4.293726e-06, 0.29411703)
+body_offset = Transform3D(1, -2.9802322e-08, 7.450581e-09, 0, 7.450581e-09, -1, 0, 1, -7.450581e-09, 1.7166138e-05, 0.29411703, -4.2915344e-06)
 
 [node name="Physical Bone Head" parent="Enemies/Goblin/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(856469443, 366939794) index="1" unique_id=224980282]
 transform = Transform3D(0.99999976, 0.0006392896, -0.00042004883, -0.00056903495, 0.2547102, -0.9670173, -0.00051125884, 0.9670173, 0.2547105, 0.00018310547, 1.4044361, -0.026216745)
@@ -58,9 +59,9 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.002855e-06, -1.1056662e-
 body_offset = Transform3D(0.9643892, 0.05493325, -0.2587204, -0.24706462, 0.53627163, -0.80707633, 0.09440917, 0.84225607, 0.53074646, 0.03181708, 0.09928322, -0.0652765)
 
 [node name="Physical Bone LowerArm_R" parent="Enemies/Goblin/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(856469443, 366939794) index="3" unique_id=587459012]
-transform = Transform3D(-0.8223252, 0.5627225, -0.084407866, -0.560204, -0.7746232, 0.29347962, 0.099763334, 0.2886213, 0.95223165, 0.46889782, 0.81665885, -0.2149893)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.056573465, 0.04407572, 0.27820775)
-body_offset = Transform3D(0.8673522, 0.44374394, -0.22537024, -0.49769464, 0.7740611, -0.39131817, 0.00080522895, 0.45157605, 0.89223236, 0.09221053, 0.046594143, -0.26808393)
+transform = Transform3D(-0.8223252, 0.56272256, -0.084407866, -0.5602041, -0.7746233, 0.29347962, 0.099763304, 0.2886213, 0.95223165, 0.46889782, 0.81665885, -0.2149893)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.056573465, 0.04407572, 0.27820772)
+body_offset = Transform3D(0.8673521, 0.44374388, -0.22537024, -0.4976946, 0.7740611, -0.39131817, 0.00080525875, 0.45157608, 0.89223236, 0.09221053, 0.046594143, -0.26808393)
 
 [node name="Physical Bone UpperLeg_R" parent="Enemies/Goblin/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(856469443, 366939794) index="4" unique_id=1504103985]
 transform = Transform3D(-0.96991277, -0.09309295, -0.22495121, -0.20017108, -0.22097445, 0.95451653, -0.13856721, 0.9708265, 0.1956914, 0.1769309, 0.5011045, 0.007174015)
@@ -78,9 +79,9 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4233403e-05, 2.3145229e-
 body_offset = Transform3D(0.9914227, 0.12746193, -0.02888903, -0.12812626, 0.90429, -0.4072382, -0.02578333, 0.40744668, 0.912865, 0.0035362244, 0.050070286, -0.11228943)
 
 [node name="Physical Bone LowerArm_L" parent="Enemies/Goblin/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(856469443, 366939794) index="7" unique_id=1379587394]
-transform = Transform3D(-0.36162508, -0.9205596, -0.14763978, 0.9310073, -0.34814608, -0.10963451, 0.04952489, -0.1771003, 0.98294604, -0.39787626, 0.9803312, -0.32383168)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016944442, 0.071017325, 0.4010944)
-body_offset = Transform3D(0.99471724, 0.097346276, -0.032578185, -0.097969264, 0.9950245, -0.018104196, 0.03065373, 0.02120024, 0.99930537, 0.023008585, -0.06506252, -0.40180194)
+transform = Transform3D(-0.36162508, -0.92055947, -0.14763984, 0.9310073, -0.34814605, -0.10963452, 0.04952489, -0.17710027, 0.98294604, -0.39787626, 0.9803312, -0.32383168)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01694443, 0.071017325, 0.40109438)
+body_offset = Transform3D(0.99471724, 0.09734629, -0.032578215, -0.097969264, 0.9950247, -0.018104225, 0.03065373, 0.02120021, 0.99930537, 0.023008585, -0.06506252, -0.40180194)
 
 [node name="Physical Bone UpperLeg_L" parent="Enemies/Goblin/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(856469443, 366939794) index="8" unique_id=1398144603]
 transform = Transform3D(-0.96991307, 0.093090296, 0.22495091, 0.20016998, -0.22098373, 0.9545147, 0.13856652, 0.97082466, 0.19570114, -0.17649913, 0.50115883, 0.00717628)
@@ -88,9 +89,9 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3133005e-05, -7.9923775e
 body_offset = Transform3D(0.99034196, -0.13679615, -0.022575483, -0.024220541, -0.010373041, -0.999653, 0.13651448, 0.9905448, -0.013586134, 0.004039526, 0.17993543, 0.0024502277)
 
 [node name="Physical Bone LowerLeg_L" parent="Enemies/Goblin/character/骨架/Skeleton3D/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(856469443, 366939794) index="9" unique_id=2004116743]
-transform = Transform3D(-0.9901791, 0.1398001, 0.0011683218, 0.019889014, 0.13258874, 0.9909716, 0.138383, 0.98126256, -0.1340671, -0.21718359, 0.16987455, -0.0064787865)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008720181, -0.0036923897, 0.16078635)
-body_offset = Transform3D(0.9903575, -0.13619795, 0.02534023, 0.02715107, 0.011453919, -0.9995658, 0.13584855, 0.99061525, 0.015041567, 0.004058838, 0.16099556, 0.0024238825)
+transform = Transform3D(-0.9901791, 0.1398001, 0.0011683144, 0.019889014, 0.13258874, 0.99097157, 0.138383, 0.98126256, -0.13406707, -0.21718359, 0.16987455, -0.0064787865)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008720177, -0.0036923846, 0.16078632)
+body_offset = Transform3D(0.9903575, -0.13619795, 0.025340214, 0.02715107, 0.011453919, -0.99956584, 0.13584855, 0.99061525, 0.015041538, 0.004058838, 0.16099556, 0.0024238825)
 
 [node name="EquipmentComponent" parent="Enemies/Goblin" index="2" unique_id=2035309279]
 weapon_data = ExtResource("3_nipdr")
@@ -101,6 +102,18 @@ transform = Transform3D(-0.61840427, 0, -0.7858601, 0, 1, 0, 0.7858601, 0, -0.61
 
 [node name="Goblin3" parent="Enemies" parent_id_path=PackedInt32Array(895886982) index="2" unique_id=38372140 instance=ExtResource("2_n7vah")]
 transform = Transform3D(-0.9974877, 0, 0.070839375, 0, 1, 0, -0.070839375, 0, -0.9974877, -0.5343585, 0, -5.280278)
+
+[node name="AcidTrap" parent="AcidTraps" parent_id_path=PackedInt32Array(325750751) index="0" unique_id=53563161 instance=ExtResource("4_nipdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="AcidTrap2" parent="AcidTraps" parent_id_path=PackedInt32Array(325750751) index="1" unique_id=1963230248 instance=ExtResource("4_nipdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="AcidTrap3" parent="AcidTraps" parent_id_path=PackedInt32Array(325750751) index="2" unique_id=1203000725 instance=ExtResource("4_nipdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="AcidTrap4" parent="AcidTraps" parent_id_path=PackedInt32Array(325750751) index="3" unique_id=1179828413 instance=ExtResource("4_nipdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
 
 [editable path="Enemies/Goblin"]
 [editable path="Enemies/Goblin/character"]

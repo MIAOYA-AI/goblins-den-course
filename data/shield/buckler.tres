@@ -6,7 +6,6 @@
 [resource]
 script = ExtResource("1_cqs4f")
 name = "Buckler"
-shield_mesh = ExtResource("2_einur")
+glb_mesh = ExtResource("2_einur")
 condition = 20.0
-max_condition = 20
 metadata/_custom_type_script = "uid://cyme7j2jd6kpb"

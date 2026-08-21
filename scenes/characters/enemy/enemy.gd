@@ -39,6 +39,10 @@ func _physics_process(delta: float) -> void:
 
 func switch_state(new_state:State,data:EnemyStateData=EnemyStateData.new()) -> void:
 	if state_node!=null:
+		#queue_free延迟到帧末才释放 期间旧状态节点仍会执行_physics_process
+		#外部信号(如try_stuuned)触发的切换会让旧MOVING多跑1帧 用run动画覆盖新状态动画
+		#因此先立即停用旧状态的处理 再等帧末释放
+		state_node.set_physics_process(false)
 		state_node.queue_free()
 	var state_map:={
 		State.MOVING:EnemyStateMoving,
@@ -94,10 +98,10 @@ func on_kicked() -> void:
 		switch_state(State.BLOCK,state_data)
 		
 func can_be_hurt() -> bool:
-	return state==State.STUUNED or state==State.SLASHING
+	return state==State.STUUNED or state==State.SLASHING or state==State.MOVING
 	
 func can_be_stuuned() -> bool:
-	return state==State.SLASHING
+	return state==State.SLASHING or state==State.MOVING
 		
 func on_player_detected(body:Node3D) -> void:
 	player=body
@@ -122,6 +126,14 @@ func try_recrive_hit(damage:int,source_player:Player) -> void:
 	else:
 		damage_data.damage=damage
 		switch_state(State.HURT,damage_data)
+		
+func try_stuuned(impulse_direction:Vector3=Vector3.ZERO) -> void:
+	screamed.emit()
+	equipment_component.throw_shield()
+	if can_be_stuuned():
+		var damage_data:EnemyStateData=EnemyStateData.new()
+		damage_data.impulse_direction=impulse_direction
+		switch_state(State.STUUNED,damage_data)
 		
 func can_dead() -> bool:
 	return state!=State.DEATH
